@@ -21,7 +21,7 @@
         <div class="mb-4">
           <input type="text" name="username" id="username" placeholder="Pseudo"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
-          @error('name') border-red-500 @enderror" value="{{ old('username') }}">
+          @error('username') border-red-500 @enderror" value="{{ old('username') }}">
 
           @error('username')
             <div class="text-red-500 mt-2 text-sm">
@@ -33,13 +33,27 @@
         <div class="mb-4">
           <input type="text" name="email" id="email" placeholder="Email"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
-          @error('name') border-red-500 @enderror" value="{{ old('email') }}">
+          @error('email') border-red-500 @enderror" value="{{ old('email') }}">
           
           @error('email')
             <div class="text-red-500 mt-2 text-sm">
               Vous devez remplir ce champ.
             </div>
           @enderror 
+
+        </div>
+
+        <div class="mb-4">
+          <input type="password" name="password" id="password" placeholder="Mot de passe"
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          @error('password') border-red-500 @enderror" value="">
+          
+          @error('email')
+            <div class="text-red-500 mt-2 text-sm">
+              Vous devez remplir ce champ.
+            </div>
+          @enderror 
+
         </div>
 
         <div class="div">

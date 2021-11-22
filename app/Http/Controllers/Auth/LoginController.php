@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function index() {
-
-        
+    public function index() {      
+          
         return view('forms.login');
     }
     
@@ -20,7 +19,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (!auth()->attempt($request->only('email', 'password'), $request->remember)) {
+        if (!auth()->attempt($request->only('email', 'password'))) {
             return back()->with('status', 'Email ou mot de passe non valide');
         }
 
