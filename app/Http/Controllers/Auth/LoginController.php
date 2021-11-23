@@ -20,7 +20,7 @@ class LoginController extends Controller
         ]);
 
         if (!auth()->attempt($request->only('email', 'password'))) {
-            return back()->with('status', 'Email ou mot de passe non valide');
+            return back()->with('status', 'Email ou mot de passe invalide. Veuillez réessayer');
         }
 
         return redirect()->route('dashboard');

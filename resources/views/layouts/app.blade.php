@@ -15,7 +15,12 @@
       <li><a href="" class="p-3">Contact</a></li>
       @auth
       <li><a href="" class="p-3">John Doe</a></li>
-      <li><a href="" class="p-3">Log Out</a></li>
+      <li>
+        <form action="{{ route('logout') }}" method="post" class="p-3 inline">
+          @csrf
+          <button type="submit">Logout</button>
+        </form>
+      </li>
       @endauth
 
       @guest
@@ -24,6 +29,7 @@
     </ul>
   </nav>
 
+  @auth
   <div class="fixed top-0 left-0 h-screen w-16 flex flex-col
                   bg-gray-900 shadow-lg">
     <div class="sidebar-icon group">
@@ -48,6 +54,7 @@
     </div>
 
   </div>
+  @endauth
 
   @yield('content')
 </body>
