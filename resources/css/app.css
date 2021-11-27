@@ -6,7 +6,7 @@
 
   .sidebar-icon {
     @apply  relative flex items-center justify-center
-            h-12 w-12 mt-2 mb-2 mx-auto shadow-lg
+            h-16 w-16 mt-2 mb-2 mx-auto shadow-lg
             bg-gray-800 text-green-500
             hover:bg-green-600 hover:text-white
             rounded-3xl
@@ -15,10 +15,18 @@
   }
 
   .sidebar-tooltip {
-    @apply  absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md
+    @apply  absolute w-auto p-4 m-2 min-w-max left-20 rounded-md shadow-md
             text-green-500 bg-gray-900 
             text-xs font-bold 
             transition-all duration-100 opacity-0 origin-left;
+  }
+
+  .table-layout {
+    @apply  max-w-7xl ml-48 mt-8 bg-indigo-50;
+  }
+
+  .table-layout .row td {
+    @apply  text-center border-2 border-black border-opacity-30 p-2;
   }
 
 }

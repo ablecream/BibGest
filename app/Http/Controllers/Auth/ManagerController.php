@@ -30,13 +30,45 @@ class ManagerController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        auth()->attempt($request->only('email', 'password'));
-
         return redirect()->route('managers');
     }
 
     public function list() {
-        $managers = User::all();
-        return view('posts.managers', ['managers'=>$managers]);
+        $managers = User::paginate(2);
+        
+        return view('posts.managers')->with('managers', $managers);
+    }
+
+    public function destroy($id) {
+        $manager = User::find($id);
+        
+        $manager->delete();
+
+        return redirect()->route('managers');
+    }
+
+    public function editview($id) {
+        $manager = User::find($id);
+
+        return view('forms.managerupdate')->with('manager', $manager);
+    }
+
+    public function edit(Request $request, $id) {
+        $manager = User::find($id);
+
+        $this->validate($request, [
+            'name' => 'max:255',
+            'username' => 'max:255',
+            'email' => 'email|max:255',
+            'password' => 'max:255',
+        ]);
+
+        $manager->name = $request->name;
+        $manager->username = $request->username;
+        $manager->email = $request->email;
+        $manager->password = Hash::make($request->password);
+        $manager->save();
+
+        return redirect()->route('managers');
     }
 }

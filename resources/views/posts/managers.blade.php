@@ -2,28 +2,39 @@
 
 @section('content')
 
-  <div class="div">
+  <div class="ml-48 mt-16">
     <a href="{{ route('register') }}" class="bg-gray-800 text-white px-4 py-3 rounded
-                                 font-medium w-24 ml-20">Ajouter</a>
+                                             font-medium w-24">Ajouter</a>
   </div>
 
-  <table class="max-w-7xl leading-normal ml-20 mt-6 bg-indigo-100">
+  <table class="table-layout">
     <tr class="bg-gray-100">
-      <td class="text-center">#</td>
-      <td class="text-center">Nom</td>
-      <td class="text-center">Nom d'utilisateur</td>
-      <td class="text-center">Email</td>
-      <td class="text-center">Mot de passe</td>
+      <td class="text-center p-2">#</td>
+      <td class="text-center p-2">Nom</td>
+      <td class="text-center p-2">Nom d'utilisateur</td>
+      <td class="text-center p-2">Email</td>
     </tr>
     @foreach($managers as $manager)
-    <tr>
-      <td class="text-center border-2 border-black">{{$manager->id}}</td>
-      <td class="text-center border-2 border-black">{{$manager->name}}</td>
-      <td class="text-center border-2 border-black">{{$manager->username}}</td>
-      <td class="text-center border-2 border-black">{{$manager->email}}</td>
-      <td class="text-center border-2 border-black">{{$manager->password}}</td>
+    <tr class="row">
+      <td>{{$manager->id}}</td>
+      <td>{{$manager->name}}</td>
+      <td>{{$manager->username}}</td>
+      <td>{{$manager->email}}</td>
+      <td>
+        <form action="{{ route('managers.destroy', $manager->id) }}" method="post">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="text-white bg-red-700 rounded font-medium p-2"><i class="fa fa-trash-alt"></i></button>
+        </form>
+      </td>
+      <td>
+        <a href="{{ route('edit', $manager->id) }}" class="text-white bg-indigo-500 rounded font-medium p-2"><i class="fa fa-edit"></i></a>
+      </td>
     </tr>
     @endforeach
   </table>
+  <div class="mx-52 my-6">
+    {{ $managers->links() }}
+  </div>
 
 @endsection

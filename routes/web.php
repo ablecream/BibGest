@@ -18,6 +18,9 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/managers', [ManagerController::class, 'list'])->name('managers');
+Route::delete('/managers/{id}', [ManagerController::class, 'destroy'])->name('managers.destroy');
+Route::get('/managers/edit/{id}', [ManagerController::class, 'editview'])->name('edit');
+Route::post('/managers/edit/{id}', [ManagerController::class, 'edit']);
 Route::get('/managers/register', [ManagerController::class, 'index'])->name('register');
 Route::post('/managers/register', [ManagerController::class, 'store']);
 

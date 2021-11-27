@@ -9,12 +9,13 @@
   <title>Bib</title>
 </head>
 <body class="bg-gray-100">
-  <nav class="bg-gray-900 flex justify-end p-6 mb-6">
+  <nav class="bg-gray-900 flex justify-between p-5 mb-6">
+    <a href="" class="font-bold text-xl text-green-500">BibTech</a>
     <ul class="flex items-center text-green-500">
       <li><a href="" class="p-3">Home</a></li>
       <li><a href="" class="p-3">Contact</a></li>
       @auth
-      <li><a href="" class="p-3">John Doe</a></li>
+      <li><a href="" class="p-3">{{ auth()->user()->name }}</a></li>
       <li>
         <form action="{{ route('logout') }}" method="post" class="p-3 inline">
           @csrf
@@ -30,7 +31,7 @@
   </nav>
 
   @auth
-  <div class="fixed top-0 left-0 h-screen w-16 flex flex-col
+  <div class="fixed top-16 left-0 h-screen w-24 flex flex-col
                   bg-gray-900 shadow-lg">
     <div class="sidebar-icon group">
       <i class="fas fa-book"></i><span class="sidebar-tooltip group-hover:opacity-100">Livres</span>
@@ -44,14 +45,14 @@
     <div class="sidebar-icon group">
       <i class="fas fa-address-book"></i><span class="sidebar-tooltip group-hover:opacity-100">Emprunts</span>
     </div>
-    <div class="sidebar-icon group">
+    <a class="sidebar-icon group">
       <i class="fas fa-quote-right"></i><span class="sidebar-tooltip group-hover:opacity-100">Mots-clés</span>
-    </div>
-    <div class="sidebar-icon group">
-      <a href="{{ route('managers') }}">
-        <i class="fas fa-user-shield"></i><span class="sidebar-tooltip group-hover:opacity-100">Gestionnaires</span>
-      </a>  
-    </div>
+    </a>
+    @if (auth()->user()->admin)
+    <a href="{{ route('managers') }}" class="sidebar-icon group">
+      <i class="fas fa-user-shield"></i><span class="sidebar-tooltip group-hover:opacity-100">Gestionnaires</span>
+    </a>
+    @endif
 
   </div>
   @endauth
