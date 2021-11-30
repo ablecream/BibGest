@@ -11,7 +11,7 @@ use App\Models\User;
 class ManagerController extends Controller
 {
     public function index() {
-        return view('forms.managers');
+        return view('managers.form');
     }
 
     public function store(Request $request) {
@@ -36,7 +36,7 @@ class ManagerController extends Controller
     public function list() {
         $managers = User::paginate(2);
         
-        return view('posts.managers')->with('managers', $managers);
+        return view('managers.index')->with('managers', $managers);
     }
 
     public function destroy($id) {
@@ -50,7 +50,7 @@ class ManagerController extends Controller
     public function editview($id) {
         $manager = User::find($id);
 
-        return view('forms.managerupdate')->with('manager', $manager);
+        return view('managers.editform')->with('manager', $manager);
     }
 
     public function edit(Request $request, $id) {

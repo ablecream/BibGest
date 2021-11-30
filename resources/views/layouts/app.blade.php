@@ -9,10 +9,10 @@
   <title>Bib</title>
 </head>
 <body class="bg-gray-100">
-  <nav class="bg-gray-900 flex justify-between p-5 mb-6">
+  <nav class="z-10 bg-gray-900 flex justify-between p-5 mb-6">
     <a href="" class="font-bold text-xl text-green-500">BibTech</a>
     <ul class="flex items-center text-green-500">
-      <li><a href="" class="p-3">Home</a></li>
+      <li><a href="{{ route('home') }}" class="p-3">Home</a></li>
       <li><a href="" class="p-3">Contact</a></li>
       @auth
       <li><a href="" class="p-3">{{ auth()->user()->name }}</a></li>
@@ -29,13 +29,14 @@
       @endguest
     </ul>
   </nav>
-
-  @auth
-  <div class="fixed top-16 left-0 h-screen w-24 flex flex-col
-                  bg-gray-900 shadow-lg">
-    <div class="sidebar-icon group">
+  
+  @auth 
+  <div class="fixed top-0 left-0 h-screen w-24 flex flex-col
+  bg-gray-900 shadow-lg">
+  <a href="" class="font-bold text-xl text-green-500 my-6 mx-auto">BibTech</a>
+    <a href="{{ route('books') }}" class="sidebar-icon group">
       <i class="fas fa-book"></i><span class="sidebar-tooltip group-hover:opacity-100">Livres</span>
-    </div>
+    </a>
     <div class="sidebar-icon group">
       <i class="fas fa-users"></i><span class="sidebar-tooltip group-hover:opacity-100">Abonnés</span>
     </div>

@@ -8,7 +8,7 @@
      <button type="submit" class="flex items-center justify-center px-4"><i class="fas fa-search"></i></button>
   </form>
 
-<div class="grid grid-cols-3 gap-4 m-16 @auth ml-40 @endauth">  
+<div class="grid grid-cols-3 gap-4 m-16">  
   @foreach($books as $book)
     <div class="max-w-sm shadow-lg overflow-hidden rounded">
       <img class="w-full" src="storage/{{ $book->image }}" alt="image">

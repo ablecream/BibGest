@@ -23,6 +23,7 @@ class CreateBooksTable extends Migration
             $table->string('language');
             $table->string('year');
             $table->string('image');
+            $table->string('resume');
             $table->timestamps();
         });
     }

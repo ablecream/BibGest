@@ -4,7 +4,7 @@
   
   <div class="flex justify-center">
     <div class="w-4/12 bg-dark p-6 rounded-lg">
-      <form action="{{ route('edit', $manager->id) }}" method="post">
+      <form action="{{ route('managers.edit', $manager->id) }}" method="post">
         @csrf
         <div class="mb-4">
           <input type="text" name="name" id="name" placeholder="Nom"
