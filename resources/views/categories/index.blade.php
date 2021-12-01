@@ -30,5 +30,9 @@
     </tr>
     @endforeach
   </table>
+  
+  <div class="mx-52 my-6">
+    {{ $cats->links() }}
+  </div>
 
 @endsection

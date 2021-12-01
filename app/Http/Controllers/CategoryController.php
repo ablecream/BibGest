@@ -8,7 +8,7 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function list() {
-        $cats = Category::all();
+        $cats = Category::paginate(5);
         return view('categories.index', ['cats'=>$cats]);
     }
 
