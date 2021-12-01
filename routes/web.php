@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientController;
 
 
 Route::get('/', [BookController::class, 'listguest'])->name('home');
@@ -32,6 +34,16 @@ Route::get('/books/edit/{id}', [BookController::class, 'editview'])->name('books
 Route::post('/books/edit/{id}', [BookController::class, 'edit']);
 Route::get('/search', [BookController::class, 'search'])->name('search');
 
-Route::get('/posts', function () {
-    return view('posts.index');
-});
+Route::get('/categories', [CategoryController::class, 'list'])->name('cats');
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('cats.destroy');
+Route::get('/categories/add', [CategoryController::class, 'index'])->name('addcat');
+Route::post('/categories/add', [CategoryController::class, 'store']);
+Route::get('/categories/edit/{id}', [CategoryController::class, 'editview'])->name('cats.edit');
+Route::post('/categories/edit/{id}', [CategoryController::class, 'edit']);
+
+Route::get('/clients', [ClientController::class, 'list'])->name('clients');
+Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
+Route::get('/clients/add', [ClientController::class, 'index'])->name('addclient');
+Route::post('/clients/add', [ClientController::class, 'store']);
+Route::get('/clients/edit/{id}', [ClientController::class, 'editview'])->name('clients.edit');
+Route::post('/clients/eidt/{id}', [CategoryController::class, 'edit']);

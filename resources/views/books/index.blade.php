@@ -12,6 +12,7 @@
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Titre</td>
       <td class="text-center p-2">Auteur</td>
+      <td class="text-center p-2">Catégorie</td>
       <td class="text-center p-2">Editeur</td>
       <td class="text-center p-2">Langue</td>
       <td class="text-center p-2">Année</td>
@@ -21,6 +22,7 @@
       <td>{{$book->id}}</td>
       <td>{{$book->title}}</td>
       <td>{{$book->author}}</td>
+      <td>{{$book->category['lable']}}</td>
       <td>{{$book->editor}}</td>
       <td>{{$book->language}}</td>
       <td>{{$book->year}}</td>

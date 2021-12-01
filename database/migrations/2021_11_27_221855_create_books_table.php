@@ -17,6 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
+            $table->foreignId('category_id')->constrained();
             $table->string('ISBN');
             $table->string('editor');
             $table->integer('copies');

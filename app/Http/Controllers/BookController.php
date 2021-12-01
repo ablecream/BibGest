@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
 use Intervention\Image\Facades\Image;
 
 class BookController extends Controller
@@ -34,16 +35,18 @@ class BookController extends Controller
             'copies' => 'required',
             'image' => 'required|image'
         ]);
-
+        
         $imagePath = $request->file('image')->store('uploads', 'public');
-
+        
         $image = Image::make(public_path("storage/{$imagePath}"))->resize(350,500);
         $image->save();
-
+        
+        
         $book = new Book();
-
-            $book->title = $request->title;
+        
+        $book->title = $request->title;
             $book->author = $request->author;
+            $book->category_id = $request->category;
             $book->editor = $request->editor;
             $book->ISBN = $request->ISBN;
             $book->language = $request->language;
@@ -51,10 +54,12 @@ class BookController extends Controller
             $book->copies = $request->copies;
             $book->image = $imagePath;
             $book->resume = $request->resume;
+    
             $book->save();
-
-        return redirect()->route('books');
-    }
+            
+            
+            return redirect()->route('books');
+        }
 
     public function destroy($id) {
         $book = Book::find($id);
@@ -93,6 +98,7 @@ class BookController extends Controller
 
         $book->title = $request->title;
         $book->author = $request->author;
+        $book->editor = $request->category_id;
         $book->editor = $request->editor;
         $book->ISBN = $request->ISBN;
         $book->language = $request->language;

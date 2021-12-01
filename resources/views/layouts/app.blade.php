@@ -37,12 +37,12 @@
     <a href="{{ route('books') }}" class="sidebar-icon group">
       <i class="fas fa-book"></i><span class="sidebar-tooltip group-hover:opacity-100">Livres</span>
     </a>
-    <div class="sidebar-icon group">
+    <a href="{{ route('clients') }}" class="sidebar-icon group">
       <i class="fas fa-users"></i><span class="sidebar-tooltip group-hover:opacity-100">Abonnés</span>
-    </div>
-    <div class="sidebar-icon group">
+    </a>
+    <a href="{{ route('cats') }}" class="sidebar-icon group">
       <i class="fas fa-align-right"></i><span class="sidebar-tooltip group-hover:opacity-100">Catégories</span>
-    </div>
+    </a>
     <div class="sidebar-icon group">
       <i class="fas fa-address-book"></i><span class="sidebar-tooltip group-hover:opacity-100">Emprunts</span>
     </div>

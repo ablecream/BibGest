@@ -30,6 +30,23 @@
           @enderror 
         </div>
 
+        
+        <div class="mb-4">
+          <select name="category" id="category" placeholder="Categorie"
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          @error('category') border-red-500 @enderror" value="{{ old('category') }}">
+          @foreach($cats as $cat)
+          <option value="{{ $cat->id }}">{{$cat->lable}}</option>
+          @endforeach
+
+          @error('category')
+            <div class="text-red-500 mt-2 text-sm">
+              Vous devez remplir ce champ.
+            </div>
+          @enderror
+          </select> 
+        </div>
+
         <div class="mb-4">
           <input type="text" name="editor" id="editor" placeholder="Editeur"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
