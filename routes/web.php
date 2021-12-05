@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\ClientController;
 
 
@@ -19,6 +20,7 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
+Route::get('/{username}', [ManagerController::class, 'profil'])->name('user');
 Route::get('/managers', [ManagerController::class, 'list'])->name('managers');
 Route::delete('/managers/{id}', [ManagerController::class, 'destroy'])->name('managers.destroy');
 Route::get('/managers/edit/{id}', [ManagerController::class, 'editview'])->name('managers.edit');
@@ -47,3 +49,10 @@ Route::get('/clients/add', [ClientController::class, 'index'])->name('addclient'
 Route::post('/clients/add', [ClientController::class, 'store']);
 Route::get('/clients/edit/{id}', [ClientController::class, 'editview'])->name('clients.edit');
 Route::post('/clients/eidt/{id}', [CategoryController::class, 'edit']);
+
+Route::get('/tags', [TagController::class, 'list'])->name('tags');
+Route::delete('/tags/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
+Route::get('/tags/add', [TagController::class, 'index'])->name('addtag');
+Route::post('/tags/add', [TagController::class, 'store']);
+Route::get('/tags/edit/{id}', [TagController::class, 'editview'])->name('tags.edit');
+Route::post('/tags/edit/{id}', [TagController::class, 'edit']);

@@ -22,7 +22,7 @@
       <td>{{$book->id}}</td>
       <td>{{$book->title}}</td>
       <td>{{$book->author}}</td>
-      <td>{{$book->category['lable']}}</td>
+      <td>{{$book->category['label']}}</td>
       <td>{{$book->editor}}</td>
       <td>{{$book->language}}</td>
       <td>{{$book->year}}</td>

@@ -4,14 +4,15 @@
   
   <div class="flex justify-center">
     <div class="w-4/12 bg-dark p-6 rounded-lg">
+      <div class="text-center text-green-500 font-bold mb-8 text-2xl">Ajouter une catégorie</div>
       <form action="{{ route('addcat') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
-          <input type="text" name="lable" id="lable" placeholder="Libellé"
+          <input type="text" name="label" id="label" placeholder="Libellé"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
-          @error('lable') border-red-500 @enderror" value="{{ old('lable') }}">
+          @error('label') border-red-500 @enderror" value="{{ old('label') }}">
 
-          @error('lable')
+          @error('label')
             <div class="text-red-500 mt-2 text-sm">
               Vous devez remplir ce champ.
             </div>

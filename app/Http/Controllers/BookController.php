@@ -47,6 +47,8 @@ class BookController extends Controller
         $book->title = $request->title;
             $book->author = $request->author;
             $book->category_id = $request->category;
+            $book->tag_id = 1;
+            $book->tag_id = 2;
             $book->editor = $request->editor;
             $book->ISBN = $request->ISBN;
             $book->language = $request->language;
@@ -98,7 +100,7 @@ class BookController extends Controller
 
         $book->title = $request->title;
         $book->author = $request->author;
-        $book->editor = $request->category_id;
+        $book->category_id = $request->category;
         $book->editor = $request->editor;
         $book->ISBN = $request->ISBN;
         $book->language = $request->language;
@@ -114,6 +116,10 @@ class BookController extends Controller
         $search_text = $_GET['search'];
         $books = Book::where('title', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('author', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('editor', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('ISBN', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('year', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('language', 'LIKE', '%'.$search_text.'%')
                         ->get();
 
         return view('search', compact('books'));

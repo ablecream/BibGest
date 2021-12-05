@@ -3,7 +3,8 @@
 @section('content')
   
   <div class="flex justify-center">
-    <div class="w-4/12 bg-dark p-6 rounded-lg">
+    <div class="w-6/12 bg-dark p-6 rounded-lg">
+      <div class="text-center text-green-500 font-bold mb-8 text-2xl">Ajouter un livre</div>
       <form action="{{ route('addbook') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
@@ -35,8 +36,9 @@
           <select name="category" id="category" placeholder="Categorie"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
           @error('category') border-red-500 @enderror" value="{{ old('category') }}">
+          <option selected disabled>Catégorie</option>
           @foreach($cats as $cat)
-          <option value="{{ $cat->id }}">{{$cat->lable}}</option>
+          <option value="{{ $cat->id }}">{{$cat->label}}</option>
           @endforeach
 
           @error('category')

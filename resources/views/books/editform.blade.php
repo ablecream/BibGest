@@ -4,6 +4,7 @@
   
   <div class="flex justify-center">
     <div class="w-4/12 bg-dark p-6 rounded-lg">
+      <div class="text-center text-green-500 font-bold mb-8 text-2xl">Modifier le livre</div>
       <form action="{{ route('books.edit', $book->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
@@ -28,6 +29,23 @@
               Vous devez remplir ce champ.
             </div>
           @enderror 
+        </div>
+        
+        <div class="mb-4">
+          <select name="category" id="category" placeholder="Categorie"
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          @error('category') border-red-500 @enderror" value="{{ $book->category_id }}">
+          <option selected disabled>Catégorie</option>
+          @foreach($cats as $cat)
+          <option value="{{ $cat->id }}">{{$cat->label}}</option>
+          @endforeach
+
+          @error('category')
+            <div class="text-red-500 mt-2 text-sm">
+              Vous devez remplir ce champ.
+            </div>
+          @enderror
+          </select> 
         </div>
 
         <div class="mb-4">

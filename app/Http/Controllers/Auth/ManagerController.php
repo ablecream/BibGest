@@ -14,6 +14,10 @@ class ManagerController extends Controller
         return view('managers.form');
     }
 
+    public function profil() {
+        return view('managers.profil');
+    }
+
     public function store(Request $request) {
         
         $this->validate($request, [

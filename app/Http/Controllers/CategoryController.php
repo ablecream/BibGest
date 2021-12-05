@@ -19,12 +19,12 @@ class CategoryController extends Controller
     public function store(Request $request) {
 
         $this->validate($request, [
-            'lable' => 'required|max:255',
+            'label' => 'required|max:255',
         ]);
 
         $cat = new Category();
 
-        $cat->lable = $request->lable;
+        $cat->label = $request->label;
         $cat->save();
 
         return redirect()->route('cats');
@@ -45,13 +45,13 @@ class CategoryController extends Controller
     }
 
     public function edit(Request $request, $id) {
-        $cat = category::find($id);
+        $cat = Category::find($id);
 
         $this->validate([$request, 
-            'lable' => 'max:255',
+            'label' => 'max:255',
         ]);
 
-        $cat->lable = $request->lable;
+        $cat->label = $request->label;
         $cat->save();
 
         return redirect()->route('cats');

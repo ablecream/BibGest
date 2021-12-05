@@ -4,6 +4,7 @@
   
   <div class="flex justify-center">
     <div class="w-4/12 bg-dark p-6 rounded-lg">
+      <div class="text-center text-green-500 font-bold mb-8 text-2xl">Ajouter un gestionnaire</div>
       <form action="{{ route('register') }}" method="post">
         @csrf
         <div class="mb-4">
