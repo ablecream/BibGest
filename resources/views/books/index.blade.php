@@ -16,6 +16,8 @@
       <td class="text-center p-2">Editeur</td>
       <td class="text-center p-2">Langue</td>
       <td class="text-center p-2">Année</td>
+      <td class="text-center p-2"></td>
+      <td class="text-center p-2"></td>
     </tr>
     @foreach($books as $book)
     <tr class="row">

@@ -11,7 +11,7 @@ class Book extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function tag() {
-        return $this->belongsTo(Tag::class, 'tag_id');
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
     }
 }

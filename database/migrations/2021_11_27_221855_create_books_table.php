@@ -18,14 +18,13 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->string('author');
             $table->foreignId('category_id')->constrained();
-            $table->foreignId('tag_id')->constrained();
             $table->string('ISBN');
             $table->string('editor');
             $table->integer('copies');
             $table->string('language');
             $table->string('year');
             $table->string('image');
-            $table->string('resume');
+            $table->string('resume')->nullable();
             $table->timestamps();
         });
     }

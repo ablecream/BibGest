@@ -45,19 +45,17 @@ class BookController extends Controller
         $book = new Book();
         
         $book->title = $request->title;
-            $book->author = $request->author;
-            $book->category_id = $request->category;
-            $book->tag_id = 1;
-            $book->tag_id = 2;
-            $book->editor = $request->editor;
-            $book->ISBN = $request->ISBN;
-            $book->language = $request->language;
-            $book->year = $request->year;
-            $book->copies = $request->copies;
-            $book->image = $imagePath;
-            $book->resume = $request->resume;
-    
-            $book->save();
+        $book->author = $request->author;
+        $book->category_id = $request->category;
+        $book->editor = $request->editor;
+        $book->ISBN = $request->ISBN;
+        $book->language = $request->language;
+        $book->year = $request->year;
+        $book->copies = $request->copies;
+        $book->image = $imagePath;
+        $book->resume = $request->resume;
+        $book->save();
+        $book->tags()->attach([1,2]);
             
             
             return redirect()->route('books');
