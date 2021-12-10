@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Tag;
 use Intervention\Image\Facades\Image;
 
 class BookController extends Controller
@@ -16,15 +17,38 @@ class BookController extends Controller
 
     public function listguest() {
         $books = Book::all();
-        return view('home', ['books'=>$books]);
+        $cats = Category::all();
+        return view('home', ['books'=>$books], ['cats'=>$cats]);
+    }
+
+    public function listbyCat($id) {
+        $books = Book::where('category_id', $id)->get();
+        $cats = Category::all();
+        return view('books.bycats', ['books'=>$books], ['cats'=>$cats]);
+    }
+
+    public function singlebook($id) {
+        $book = Book::find($id);
+        return view('books.book', ['book'=>$book]);
     }
 
     public function index() {
-        return view('books.form');
+        $cats = Category::all();
+        return view('books.form', ['cats'=>$cats]);
     }
 
     public function store(Request $request) {
         
+        $tags_arr = explode(" ", $request->tags);
+
+        $tagsinput = array();
+
+        for($i = 0; $i<count($tags_arr); $i++) {
+            if(Tag::where('label', $tags_arr[$i])->exists()) {
+                array_push($tagsinput, Tag::where('label', $tags_arr[$i])->first()->id);
+            }
+        }
+
         $this->validate($request, [
             'title' => 'required|max:255',
             'author' => 'required|max:255',
@@ -41,7 +65,6 @@ class BookController extends Controller
         $image = Image::make(public_path("storage/{$imagePath}"))->resize(350,500);
         $image->save();
         
-        
         $book = new Book();
         
         $book->title = $request->title;
@@ -55,11 +78,11 @@ class BookController extends Controller
         $book->image = $imagePath;
         $book->resume = $request->resume;
         $book->save();
-        $book->tags()->attach([1,2]);
+        $book->tags()->attach($tagsinput);
             
             
-            return redirect()->route('books');
-        }
+        return redirect()->route('books');
+    }
 
     public function destroy($id) {
         $book = Book::find($id);

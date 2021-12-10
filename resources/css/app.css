@@ -26,7 +26,7 @@
   }
 
   .table-layout .row td {
-    @apply  text-center border-2 border-gray-100 p-2;
+    @apply  text-center border-2 border-gray-100 p-6;
   }
 
 }

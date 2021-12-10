@@ -11,6 +11,8 @@
     <tr class="bg-gray-100">
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Libellé</td>
+      <td></td>
+      <td></td>
     </tr>
     @foreach($cats as $cat)
     <tr class="row">

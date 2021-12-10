@@ -13,6 +13,8 @@
       <td class="text-center p-2">Nom</td>
       <td class="text-center p-2">Prénom</td>
       <td class="text-center p-2">Date de naissance</td>
+      <td></td>
+      <td></td>
     </tr>
     @foreach($clients as $client)
     <tr class="row">

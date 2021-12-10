@@ -114,6 +114,19 @@
           @enderror 
 
         </div>
+
+        <div class="mb-4">
+          <input type="text" name="tags" id="tags" placeholder="Mots-clés"
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          @error('tags') border-red-500 @enderror" value="{{ old('tags') }}">
+          
+          @error('tags')
+            <div class="text-red-500 mt-2 text-sm">
+              Vous devez remplir ce champ.
+            </div>
+          @enderror 
+
+        </div>
         
         <div class="mb-4">
           <input type="file" name="image" id="image"

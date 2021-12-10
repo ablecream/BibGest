@@ -13,9 +13,12 @@ use App\Http\Controllers\ClientController;
 
 Route::get('/', [BookController::class, 'listguest'])->name('home');
 
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+Route::get('/user/{username}', [ManagerController::class, 'profil'])->name('user');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
@@ -34,6 +37,7 @@ Route::post('/books/add', [BookController::class, 'store']);
 Route::get('/books/edit/{id}', [BookController::class, 'editview'])->name('books.edit');
 Route::post('/books/edit/{id}', [BookController::class, 'edit']);
 Route::get('/search', [BookController::class, 'search'])->name('search');
+Route::get('/{label}', [BookController::class, 'listbyCat'])->name('bycats');
 
 Route::get('/categories', [CategoryController::class, 'list'])->name('cats');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('cats.destroy');
@@ -56,4 +60,4 @@ Route::post('/tags/add', [TagController::class, 'store']);
 Route::get('/tags/edit/{id}', [TagController::class, 'editview'])->name('tags.edit');
 Route::post('/tags/edit/{id}', [TagController::class, 'edit']);
 
-Route::get('/{username}', [ManagerController::class, 'profil'])->name('user');
+Route::get('/{id}', [BookController::class, 'singlebook'])->name('book');

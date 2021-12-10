@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Bib</title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 h-full font-mono">
   <nav class="z-10 bg-gray-900 flex justify-between p-5 mb-6">
     <a href="" class="font-bold text-xl text-green-500">BibTech</a>
     <ul class="flex items-center text-green-500">
@@ -57,7 +57,8 @@
 
   </div>
   @endauth
-
+  
   @yield('content')
+
 </body>
 </html>

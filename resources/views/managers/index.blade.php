@@ -13,6 +13,8 @@
       <td class="text-center p-2">Nom</td>
       <td class="text-center p-2">Nom d'utilisateur</td>
       <td class="text-center p-2">Email</td>
+      <td></td>
+      <td></td>
     </tr>
     @foreach($managers as $manager)
     <tr class="row">
