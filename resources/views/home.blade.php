@@ -10,12 +10,12 @@
     </li>
     @endforeach
   </nav>
-  <form class="flex justify-end items-center text-gray-700" type="get" action="{{ route('search') }}">
-      <input type="text" class="border-2 border-gray-300 bg-white
-       h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" name="search" placeholder="Recherche">
-       <button type="submit" class="flex items-center justify-center px-4"><i class="fas fa-search"></i></button>
-  </form>
 </div>
+<form class="flex justify-start mx-9 my-4 items-center text-gray-700 @auth ml-32 @endauth" type="get" action="{{ route('search') }}">
+    <input type="text" class="border-2 border-gray-300 bg-white
+     h-10 px-5 pr-72 rounded-lg text-sm focus:outline-none" name="search" placeholder="Rechercher un livre">
+     <button type="submit" class="flex items-center justify-center px-4"><i class="fas fa-search"></i></button>
+</form>
 
 <div class="grid grid-cols-5 gap-4 m-6 @auth ml-32 @endauth"> 
   @foreach($books as $book)

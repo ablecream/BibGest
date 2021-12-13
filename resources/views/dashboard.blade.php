@@ -7,7 +7,7 @@
 <canvas class="mx-96" id="myChart2" width="400" height="400"></canvas>
 <script>
 let dataC = <?php echo json_encode($cats); ?>;
-let dataA = <?php echo qjson_encode($items); ?>;
+let dataA = <?php echo json_encode($items); ?>;
 let data = JSON.parse(dataC);
 let labels = [];
 for(let i = 0; i < data.length; i++) {
