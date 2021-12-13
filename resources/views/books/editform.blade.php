@@ -34,8 +34,7 @@
         <div class="mb-4">
           <select name="category" id="category" placeholder="Categorie"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
-          @error('category') border-red-500 @enderror" value="{{ $book->category_id }}">
-          <option selected disabled>Catégorie</option>
+          @error('category') border-red-500 @enderror">
           @foreach($cats as $cat)
           <option value="{{ $cat->id }}">{{$cat->label}}</option>
           @endforeach
@@ -113,11 +112,25 @@
           @enderror 
 
         </div>
+
+        <div class="mb-4">
+          <input type="text" name="tags" id="tags" placeholder="Mots-clés"
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          @error('tags') border-red-500 @enderror"
+           value="@foreach($book->tags as $tag){{ $tag->label }} @endforeach">
+          
+          @error('tags')
+            <div class="text-red-500 mt-2 text-sm">
+              Vous devez remplir ce champ.
+            </div>
+          @enderror 
+
+        </div>
         
         <div class="mb-4">
           <input type="file" name="image" id="image"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
-          @error('image') border-red-500 @enderror" value="{{  }}">
+          @error('image') border-red-500 @enderror" value="{{ $book->image }}">
       
         </div>
 

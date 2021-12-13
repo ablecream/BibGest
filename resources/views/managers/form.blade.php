@@ -14,7 +14,7 @@
 
           @error('name')
             <div class="text-red-500 mt-2 text-sm">
-              Vous devez remplir ce champ.
+              {{ $message }}
             </div>
           @enderror 
         </div>
@@ -26,7 +26,7 @@
 
           @error('username')
             <div class="text-red-500 mt-2 text-sm">
-              Vous devez remplir ce champ.
+             {{ $message }}
             </div>
           @enderror 
         </div>
@@ -38,7 +38,7 @@
           
           @error('email')
             <div class="text-red-500 mt-2 text-sm">
-              Vous devez remplir ce champ.
+              {{ $message }}
             </div>
           @enderror 
 
@@ -48,6 +48,12 @@
           <input type="password" name="password" id="password" placeholder="Mot de passe"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
           @error('password') border-red-500 @enderror" value="">
+
+          @error('password')
+            <div class="text-red-500 mt-2 text-sm">
+              {{ $message }}
+            </div>
+          @enderror 
           
         </div>
 

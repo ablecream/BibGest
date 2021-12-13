@@ -8,7 +8,7 @@
   </div>
 
   <table class="table-layout">
-    <tr class="bg-gray-100">
+    <tr class="bg-gray-200">
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Libellé</td>
       <td></td>

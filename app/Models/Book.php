@@ -14,4 +14,8 @@ class Book extends Model
     public function tags() {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function clients() {
+        return $this->belongsToMany(Client::class, 'loans');
+    }
 }

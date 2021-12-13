@@ -57,7 +57,7 @@ class BookController extends Controller
             'language' => 'required|max:255',
             'year' => 'required|max:4',
             'copies' => 'required',
-            'image' => 'required|image'
+            'image' => 'required|image',
         ]);
         
         $imagePath = $request->file('image')->store('uploads', 'public');
@@ -80,7 +80,6 @@ class BookController extends Controller
         $book->save();
         $book->tags()->attach($tagsinput);
             
-            
         return redirect()->route('books');
     }
 
@@ -94,21 +93,32 @@ class BookController extends Controller
 
     public function editview($id) {
         $book = Book::find($id);
+        $cats = Category::all();
 
-        return view('books.editform')->with('book', $book);
+        return view('books.editform', ['book'=>$book, 'cats'=>$cats]);
     }
 
     public function edit(Request $request, $id) {
         $book = Book::find($id);
+
+        $tags_arr = explode(" ", $request->tags);
+
+        $tagsinput = array();
+
+        for($i = 0; $i<count($tags_arr); $i++) {
+            if(Tag::where('label', $tags_arr[$i])->exists()) {
+                array_push($tagsinput, Tag::where('label', $tags_arr[$i])->first()->id);
+            }
+        }
         
         $this->validate($request, [
-            'title' => 'max:255',
-            'author' => 'max:255',
-            'editor' => 'max:255',
-            'ISBN' => 'max:255',
-            'language' => 'max:255',
-            'year' => 'max:4',
-            'copies' => 'integer',
+            'title' => 'required|max:255',
+            'author' => 'required|max:255',
+            'editor' => 'required|max:255',
+            'ISBN' => 'required|max:255',
+            'language' => 'required|max:255',
+            'year' => 'required|max:4',
+            'copies' => 'required|integer',
         ]);
 
         if($request->hasFile('image')){
@@ -129,11 +139,13 @@ class BookController extends Controller
         $book->copies = $request->copies;
         $book->resume = $request->resume;
         $book->save();
+        $book->tags()->attach($tagsinput);
 
         return redirect()->route('books');
     }
 
     public function search() {
+        $cats = Category::all();
         $search_text = $_GET['search'];
         $books = Book::where('title', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('author', 'LIKE', '%'.$search_text.'%')
@@ -143,7 +155,7 @@ class BookController extends Controller
                         ->orWhere('language', 'LIKE', '%'.$search_text.'%')
                         ->get();
 
-        return view('search', compact('books'));
+        return view('search', compact('books'), ['cats'=>$cats]);
         
     }
 

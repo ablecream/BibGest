@@ -8,7 +8,7 @@ use App\Models\Tag;
 class TagController extends Controller
 {
     public function list() {
-        $tags = Tag::paginate(5);
+        $tags = Tag::paginate(4);
         return view('tags.index', ['tags'=>$tags]);
     }
 
@@ -46,10 +46,6 @@ class TagController extends Controller
 
     public function edit(Request $request, $id) {
         $tag = Tag::find($id);
-
-        $this->validate([$request, 
-            'label' => 'max:255',
-        ]);
 
         $tag->label = $request->label;
         $tag->save();

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Bib</title>
 </head>
-<body class="bg-gray-100 h-full font-mono">
+<body class="bg-gray-200 h-full font-mono">
   <nav class="z-10 bg-gray-900 flex justify-between p-5 mb-6">
     <a href="" class="font-bold text-xl text-green-500">BibTech</a>
     <ul class="flex items-center text-green-500">
@@ -44,7 +44,7 @@
       <i class="fas fa-align-right"></i><span class="sidebar-tooltip group-hover:opacity-100">Catégories</span>
     </a>
     <div class="sidebar-icon group">
-      <i class="fas fa-address-book"></i><span class="sidebar-tooltip group-hover:opacity-100">Emprunts</span>
+      <i class="fas fa-address-book"></i><span class="sidebar-tooltip group-hover:opacity-100">Emprunts/Retours</span>
     </div>
     <a href="{{ route('tags') }}" class="sidebar-icon group">
       <i class="fas fa-quote-right"></i><span class="sidebar-tooltip group-hover:opacity-100">Mots-clés</span>

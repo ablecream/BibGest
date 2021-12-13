@@ -8,7 +8,7 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function list() {
-        $cats = Category::paginate(5);
+        $cats = Category::paginate(4);
         return view('categories.index', ['cats'=>$cats]);
     }
 
@@ -46,11 +46,6 @@ class CategoryController extends Controller
 
     public function edit(Request $request, $id) {
         $cat = Category::find($id);
-
-        $this->validate([$request, 
-            'label' => 'max:255',
-        ]);
-
         $cat->label = $request->label;
         $cat->save();
 

@@ -8,7 +8,7 @@
       <form action="{{ route('tags.edit', $tag->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
-          <input type="text" name="lable" id="lable" placeholder="Libellé"
+          <input type="text" name="label" id="label" placeholder="Libellé"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
           @error('label') border-red-500 @enderror" value="{{ $tag->label }}">
 

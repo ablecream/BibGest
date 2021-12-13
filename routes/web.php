@@ -9,10 +9,9 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ClientController;
-
+use App\Http\Controllers\ChartJsController;
 
 Route::get('/', [BookController::class, 'listguest'])->name('home');
-
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -20,8 +19,14 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/user/{username}', [ManagerController::class, 'profil'])->name('user');
 
+Route::get('cat/{label}', [BookController::class, 'listbyCat'])->name('bycats');
+
+Route::get('book/{id}', [BookController::class, 'singlebook'])->name('book');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
+
+
 
 Route::get('/managers', [ManagerController::class, 'list'])->name('managers');
 Route::delete('/managers/{id}', [ManagerController::class, 'destroy'])->name('managers.destroy');
@@ -37,7 +42,6 @@ Route::post('/books/add', [BookController::class, 'store']);
 Route::get('/books/edit/{id}', [BookController::class, 'editview'])->name('books.edit');
 Route::post('/books/edit/{id}', [BookController::class, 'edit']);
 Route::get('/search', [BookController::class, 'search'])->name('search');
-Route::get('/{label}', [BookController::class, 'listbyCat'])->name('bycats');
 
 Route::get('/categories', [CategoryController::class, 'list'])->name('cats');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('cats.destroy');
@@ -53,6 +57,7 @@ Route::post('/clients/add', [ClientController::class, 'store']);
 Route::get('/clients/edit/{id}', [ClientController::class, 'editview'])->name('clients.edit');
 Route::post('/clients/eidt/{id}', [CategoryController::class, 'edit']);
 
+
 Route::get('/tags', [TagController::class, 'list'])->name('tags');
 Route::delete('/tags/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
 Route::get('/tags/add', [TagController::class, 'index'])->name('addtag');
@@ -60,4 +65,4 @@ Route::post('/tags/add', [TagController::class, 'store']);
 Route::get('/tags/edit/{id}', [TagController::class, 'editview'])->name('tags.edit');
 Route::post('/tags/edit/{id}', [TagController::class, 'edit']);
 
-Route::get('/{id}', [BookController::class, 'singlebook'])->name('book');
+
