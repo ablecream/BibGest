@@ -20,6 +20,7 @@ class CreateLoansTable extends Migration
             $table->date('loaned_at');
             $table->date('returned_at')->nullable();
             $table->boolean('returned')->default(0);
+            $table->timestamps();
         });
     }
 

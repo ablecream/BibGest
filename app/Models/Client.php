@@ -10,4 +10,8 @@ class Client extends Model
     public function books() {
         return $this->belongsToMany(Book::class, 'loans');
     }
+
+    public function loans() {
+        return $this->hasMany(Loan::class);
+    }
 }

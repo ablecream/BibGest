@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ChartJsController;
+use App\Http\Controllers\LoanController;
 
 Route::get('/', [BookController::class, 'listguest'])->name('home');
 
@@ -64,5 +65,11 @@ Route::get('/tags/add', [TagController::class, 'index'])->name('addtag');
 Route::post('/tags/add', [TagController::class, 'store']);
 Route::get('/tags/edit/{id}', [TagController::class, 'editview'])->name('tags.edit');
 Route::post('/tags/edit/{id}', [TagController::class, 'edit']);
+
+Route::get('/loans', [LoanController::class, 'list'])->name('loans');
+
+Route::get('/loans/add', [LoanController::class, 'index'])->name('addloan');
+Route::post('/loans/add', [LoanController::class, 'store']);
+Route::get('/loan/{id}', [LoanController::class, 'return'])->name('returnloan');
 
 
