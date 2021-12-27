@@ -8,12 +8,13 @@
   </div>
 
   <table class="table-layout">
-    <tr class="bg-gray-200">
+    <tr class="bg-gray-200 dark:bg-black dark:text-green-500">
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Abonné</td>
       <td class="text-center p-2">Livre</td>
       <td class="text-center p-2">Emprunté</td>
       <td class="text-center p-2">Retour</td>
+      <td></td>
       
     </tr>
     @foreach($loans as $loan)
@@ -22,8 +23,8 @@
       <td>{{$loan->client['lastname']}}, {{$loan->client['firstname']}}</td>
       <td>{{$loan->book['title']}}</td>
       <td>{{$loan->loaned_at}}</td>
-      @if($loan->returned == 1)
       <td>{{$loan->returned_at}}</td>
+      @if($loan->returned == 1)
       <td>
         <div class="text-white bg-green-500 rounded font-medium py-2 px-4">
           <i class="fa fa-check"></i>

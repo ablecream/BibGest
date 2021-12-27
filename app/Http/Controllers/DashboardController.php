@@ -20,4 +20,8 @@ class DashboardController extends Controller
 
         return view('dashboard', ['cats'=>json_encode($cats), 'items'=>$items_rec]);
     }
+
+    public function contact() {
+        return view('contact');
+    }
 }

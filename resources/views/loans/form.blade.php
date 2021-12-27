@@ -4,7 +4,7 @@
   
   <div class="flex justify-center">
     <div class="w-6/12 bg-dark p-6 rounded-lg">
-      <div class="text-center text-green-500 font-bold mb-8 text-2xl">Ajouter un livre</div>
+      <div class="text-center text-indigo-800 dark:text-green-500 font-bold mb-8 text-2xl">Ajouter un livre</div>
       <form action="{{ route('addloan') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
@@ -42,7 +42,7 @@
         </div>
 
         <div class="div">
-          <button type="submit" class="bg-gray-800 text-white px-4 py-3 rounded
+          <button type="submit" onclick="return confirm('Confirmer')" class="bg-gray-800 text-white px-4 py-3 rounded
          font-medium w-full">Ajouter</button>
         </div>
 

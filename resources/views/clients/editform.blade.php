@@ -4,7 +4,7 @@
   
   <div class="flex justify-center">
     <div class="w-4/12 bg-dark p-6 rounded-lg">
-      <div class="text-center text-green-500 font-bold mb-8 text-2xl">Modifier l'abonné</div>
+      <div class="text-center text-indigo-800 dark:text-green-500 font-bold mb-8 text-2xl">Modifier l'abonné</div>
       <form action="{{ route('clients.edit', $client->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">

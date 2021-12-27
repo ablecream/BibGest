@@ -156,7 +156,19 @@ class BookController extends Controller
                         ->get();
 
         return view('search', compact('books'), ['cats'=>$cats]);
-        
+    }
+
+    public function booksearch() {
+        $search_text = $_GET['search'];
+        $books = Book::where('title', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('author', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('editor', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('ISBN', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('year', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('language', 'LIKE', '%'.$search_text.'%')
+                        ->get();
+
+        return view('books.search', compact('books'));
     }
 
 }

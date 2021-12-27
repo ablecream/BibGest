@@ -14,6 +14,8 @@ use App\Http\Controllers\LoanController;
 
 Route::get('/', [BookController::class, 'listguest'])->name('home');
 
+Route::get('/contact', [DashboardController::class, 'contact'])->name('contact');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
@@ -42,7 +44,8 @@ Route::get('/books/add', [BookController::class, 'index'])->name('addbook');
 Route::post('/books/add', [BookController::class, 'store']);
 Route::get('/books/edit/{id}', [BookController::class, 'editview'])->name('books.edit');
 Route::post('/books/edit/{id}', [BookController::class, 'edit']);
-Route::get('/search', [BookController::class, 'search'])->name('search');
+Route::get('/books/search', [BookController::class, 'booksearch'])->name('booksearch');
+Route::get('/search', [BookController::class, 'search'])->name('homesearch');
 
 Route::get('/categories', [CategoryController::class, 'list'])->name('cats');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('cats.destroy');
@@ -56,7 +59,8 @@ Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clie
 Route::get('/clients/add', [ClientController::class, 'index'])->name('addclient');
 Route::post('/clients/add', [ClientController::class, 'store']);
 Route::get('/clients/edit/{id}', [ClientController::class, 'editview'])->name('clients.edit');
-Route::post('/clients/eidt/{id}', [CategoryController::class, 'edit']);
+Route::post('/clients/edit/{id}', [ClientController::class, 'edit']);
+Route::get('clients/search', [ClientController::class, 'clientsearch'])->name('clientsearch');
 
 
 Route::get('/tags', [TagController::class, 'list'])->name('tags');

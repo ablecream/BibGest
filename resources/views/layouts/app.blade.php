@@ -10,13 +10,13 @@
 </head>
 <body class="bg-gray-200 h-full font-mono dark:bg-black">
   <nav class="z-10 bg-white dark:bg-gray-900 flex justify-between p-5 mb-6">
-    <a href="" class="font-bold text-xl text-indigo-800 dark:text-green-500">BibTech</a>
+    <a href="{{ route('home') }}" class="font-bold text-xl text-indigo-800 dark:text-green-500">BibTech</a>
     <ul class="flex items-center font-semibold text-indigo-800 dark:text-green-500">
       <li class="px-4">
-        <button onclick="toggledarkmode()">CAP</button>
+        <div class="cursor-pointer" onclick="toggledarkmode()"><i class="fas fa-adjust"></i></div>
       </li>
       <li><a href="{{ route('home') }}" class="p-3">Home</a></li>
-      <li><a href="" class="p-3">Contact</a></li>
+      <li><a href="{{ route('contact') }}" class="p-3">Contact</a></li>
       @auth
       <li><a href="{{ route('user', auth()->user()) }}" class="p-3">{{ auth()->user()->username }}</a></li>
       <li>
@@ -36,7 +36,10 @@
   @auth 
   <div class="fixed top-0 left-0 h-screen w-24 flex flex-col
   bg-white dark:bg-gray-900 shadow-lg">
-  <a href="" class="font-bold text-xl text-indigo-800 dark:text-green-500 my-6 mx-auto">BibTech</a>
+  <a href="{{ route('home') }}" class="font-bold text-xl text-indigo-800 dark:text-green-500 my-6 mx-auto">BibTech</a>
+    <a href="{{ route('dashboard') }}" class="sidebar-icon group">
+      <i class="fas fa-chart-line"></i><span class="sidebar-tooltip group-hover:opacity-100">Dashboard</span>
+    </a>
     <a href="{{ route('books') }}" class="sidebar-icon group">
       <i class="fas fa-book"></i><span class="sidebar-tooltip group-hover:opacity-100">Livres</span>
     </a>
@@ -63,16 +66,20 @@
   
   @yield('content')
   <script>
-    let darkMode = 0;
-
-    function toggledarkmode() {
-      if(darkMode) {
-        document.documentElement.classList.remove('dark');
-        darkMode = 0;
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        localStorage.setItem('theme', 'dark')
+        document.documentElement.classList.add('dark')
+      } else {
+        localStorage.setItem('theme', 'light')
+        document.documentElement.classList.remove('dark')
       }
-      else{
-        document.documentElement.classList.add('dark');
-        darkMode = 1;
+    function toggledarkmode() {
+      if(localStorage.theme === 'dark'){
+        localStorage.setItem('theme', 'light')
+        document.documentElement.classList.remove('dark')
+      } else {
+        localStorage.setItem('theme', 'dark')
+        document.documentElement.classList.add('dark')
       }
     }
   </script>

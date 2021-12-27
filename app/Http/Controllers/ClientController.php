@@ -46,7 +46,7 @@ class ClientController extends Controller
     public function editview($id) {
         $client = Client::find($id);
 
-        return view('clients.editform', ['client', $client]);
+        return view('clients.editform', ['client'=>$client]);
     }
 
     public function edit(Request $request, $id) {
@@ -65,5 +65,14 @@ class ClientController extends Controller
         $client->save();
 
         return redirect()->route('clients');
+    }
+
+    public function clientsearch() {
+        $search_text = $_GET['search'];
+        $clients = Client::where('firstname', 'LIKE', '%'.$search_text.'%')
+                            ->orWhere('lastname', 'LIKE', '%'.$search_text.'%')
+                            ->get();
+
+        return view('clients.search', compact('clients'));
     }
 }

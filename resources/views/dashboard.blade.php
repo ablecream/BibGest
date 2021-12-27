@@ -3,8 +3,11 @@
 @section('content')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js" integrity="sha512-tMabqarPtykgDtdtSqCL3uLVM0gS1ZkUAVhRFu1vSEFgvB73niFQWJuvviDyBGBH22Lcau4rHB5p2K2T0Xvr6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<canvas class="mx-96" id="myChart" width="400" height="400"></canvas>
-<canvas class="mx-96" id="myChart2" width="400" height="400"></canvas>
+<div class="flex flex-wrap mx-16">
+    <canvas class="my-16 mx-12" id="myChart"></canvas>
+    <canvas class="my-16 mx-32" id="myChart2"></canvas>
+    <canvas class="my-16 mx-32" id="myChart3"></canvas>
+</div>
 <script>
 let dataC = <?php echo json_encode($cats); ?>;
 let dataA = <?php echo json_encode($items); ?>;
@@ -41,10 +44,18 @@ const myChart = new Chart(ctx, {
             borderWidth: 1
         }]
     },
-    options: {
+    options: { 
+        plugins: {
+            title: {
+                display: true,
+                text: 'Livres par catégorie'
+            }
+        },
+        aspectRatio: 4,
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                display: false
             }
         }
     }
@@ -78,6 +89,51 @@ const myChart2 = new Chart(ctx2, {
         }]
     },
     options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Nombre de livres'
+            }
+        },
+        aspectRatio: 4,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const ctx3 = document.getElementById('myChart3').getContext('2d');
+const myChart3 = new Chart(ctx3, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            type: 'bar',
+            label: '# of Votes',
+            data: dataA,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)'
+            ],
+        },
+        {
+            type: 'bar',
+            data: dataA,
+            backgroundColor: [
+                'rgba(16, 0, 225, 0.5)'
+            ],
+        },
+        ]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Nombre de livres'
+            }
+        },
+        aspectRatio: 4,
         scales: {
             y: {
                 beginAtZero: true

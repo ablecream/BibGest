@@ -16,7 +16,7 @@ class LoanController extends Controller
     }
 
     public function index() {
-        $books = Book::all();
+        $books = Book::where('copies', '>', 0)->get();
         $clients = Client::all();
         return view('loans.form', ['clients'=>$clients], ['books'=>$books]);
     }
@@ -42,7 +42,7 @@ class LoanController extends Controller
         $bookmod->save();
         $loan->save();
 
-        return redirect()->route('loans');
+        return redirect()->route('loans')->with('hooray');
     }
 
     public function return($id) {
