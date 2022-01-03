@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="flex flex-wrap justify-evenly items-center m-12">
+<div class="flex flex-wrap justify-evenly items-center m-12 @auth ml-36 @endauth">
   <div class="flow-root mx-8 dark:text-white">
     <div class="text-5xl my-6 animate-bounce">Contactez-nous</div>
     <div class="text-xl animate-pulse">+213 555 23 44 35</div>
@@ -15,41 +15,23 @@
     </div>
   </div>
 
-  <form action="">
+  <form action="https://formsubmit.co/quoiquequiquand@gmail.com" method="POST">
     @csrf
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="{{ route('contact') }}">
     <div class="m-4 font-bold text-center text-indigo-800 dark:text-green-500">Ecrivez-nous</div>
     <div class="mb-4">
         <input type="text" name="Nom" id="Nom" placeholder="Nom"
-        class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg
-        @error('Nom') border-red-500 @enderror" value="{{ old('Nom') }}">
+        class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg" required>
 
-        @error('Nom')
-          <div class="text-red-500 mt-2 text-sm">
-            Vous devez remplir ce champ.
-          </div>
-        @enderror 
       </div>
       <div class="mb-4">
-        <input type="text" name="Email" id="Email" placeholder="Email"
-        class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg
-        @error('Email') border-red-500 @enderror" value="{{ old('Email') }}">
-
-        @error('Email')
-          <div class="text-red-500 mt-2 text-sm">
-            Vous devez remplir ce champ.
-          </div>
-        @enderror 
+        <input type="email" name="email" id="Email" placeholder="Email"
+        class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg" required>
       </div>
       <div class="mb-4">
           <textarea name="Message" id="Message" placeholder="Message"
-          class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg
-          @error('Message') border-red-500 @enderror" value="{{ old('Message') }}">
-          
-          @error('Message')
-            <div class="text-red-500 mt-2 text-sm">
-              Vous devez remplir ce champ.
-            </div>
-          @enderror 
+          class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg" required>
           </textarea>
         </div>
 

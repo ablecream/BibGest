@@ -8,12 +8,25 @@
       <form action="{{ route('addloan') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
+          <input type="text" name="ISBN" id="ISBN" placeholder="ISBN"
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          @error('ISBN') border-red-500 @enderror" value="{{ old('ISBN') }}" autofocus>
+          
+          @error('ISBN')
+            <div class="text-red-500 mt-2 text-sm">
+              Vous devez remplir ce champ.
+            </div>
+          @enderror 
+
+        </div>
+
+        <div class="mb-4">
           <select name="book" id="book" placeholder="Livre"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
           @error('book') border-red-500 @enderror" value="{{ old('book') }}">
           <option selected disabled>Livre</option>
           @foreach($books as $book)
-          <option value="{{ $book->id }}">{{$book->title}}</option>
+          <option value="{{ $book->ISBN }}">{{$book->title}}</option>
           @endforeach
 
           @error('book')

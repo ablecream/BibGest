@@ -34,20 +34,12 @@ class BookController extends Controller
 
     public function index() {
         $cats = Category::all();
-        return view('books.form', ['cats'=>$cats]);
+        $tags = Tag::all();
+        return view('books.form', ['cats'=>$cats], ['tags'=>$tags]);
     }
 
     public function store(Request $request) {
         
-        $tags_arr = explode(" ", $request->tags);
-
-        $tagsinput = array();
-
-        for($i = 0; $i<count($tags_arr); $i++) {
-            if(Tag::where('label', $tags_arr[$i])->exists()) {
-                array_push($tagsinput, Tag::where('label', $tags_arr[$i])->first()->id);
-            }
-        }
 
         $this->validate($request, [
             'title' => 'required|max:255',
@@ -78,7 +70,7 @@ class BookController extends Controller
         $book->image = $imagePath;
         $book->resume = $request->resume;
         $book->save();
-        $book->tags()->attach($tagsinput);
+        $book->tags()->attach($request->tags);
             
         return redirect()->route('books');
     }
@@ -94,23 +86,14 @@ class BookController extends Controller
     public function editview($id) {
         $book = Book::find($id);
         $cats = Category::all();
+        $tags = Tag::all();
 
-        return view('books.editform', ['book'=>$book, 'cats'=>$cats]);
+        return view('books.editform', ['book'=>$book, 'cats'=>$cats, 'tags'=>$tags]);
     }
 
     public function edit(Request $request, $id) {
         $book = Book::find($id);
 
-        $tags_arr = explode(" ", $request->tags);
-
-        $tagsinput = array();
-
-        for($i = 0; $i<count($tags_arr); $i++) {
-            if(Tag::where('label', $tags_arr[$i])->exists()) {
-                array_push($tagsinput, Tag::where('label', $tags_arr[$i])->first()->id);
-            }
-        }
-        
         $this->validate($request, [
             'title' => 'required|max:255',
             'author' => 'required|max:255',
@@ -139,7 +122,7 @@ class BookController extends Controller
         $book->copies = $request->copies;
         $book->resume = $request->resume;
         $book->save();
-        $book->tags()->attach($tagsinput);
+        $book->tags()->attach($request->tags);
 
         return redirect()->route('books');
     }

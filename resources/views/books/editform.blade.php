@@ -101,7 +101,7 @@
         </div>
         
         <div class="mb-4">
-          <input type="text" name="copies" id="copies" placeholder="Nombre d'exemplaires"
+          <input type="number" name="copies" id="copies" placeholder="Nombre d'exemplaires"
           class="bg-gray-100 border-2 w-full p-4 rounded-lg
           @error('copies') border-red-500 @enderror" value="{{ $book->copies }}">
           
@@ -113,18 +113,11 @@
 
         </div>
 
-        <div class="mb-4">
-          <input type="text" name="tags" id="tags" placeholder="Mots-clés"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
-          @error('tags') border-red-500 @enderror"
-           value="@foreach($book->tags as $tag){{ $tag->label }} @endforeach">
-          
-          @error('tags')
-            <div class="text-red-500 mt-2 text-sm">
-              Vous devez remplir ce champ.
-            </div>
-          @enderror 
-
+        <div class="mb-4 flex flex-wrap">
+          @foreach($tags as $tag)
+          <label class="m-4 dark:text-white" for="tags">{{ $tag->label }}</label>
+          <input class="mr-4" type="checkbox" id="tags" name="tags[]" value="{{ $tag->id }}">
+          @endforeach
         </div>
         
         <div class="mb-4">

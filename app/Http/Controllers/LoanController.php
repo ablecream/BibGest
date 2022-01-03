@@ -22,27 +22,33 @@ class LoanController extends Controller
     }
 
     public function store(Request $request) {
-        
+
         $this->validate($request, [
-            'book' => 'required',
+            'ISBN' => 'required_if:book,null',
+            'book' => 'required_if:ISBN,null',
             'client' => 'required',
         ]);
 
         $loan = new Loan();
         $currentdate = Carbon::now();
-        $book = $request->book;
+        if($request->ISBN == null) {            
+            $book = $request->book;
+        }
+        else {
+            $book = $request->ISBN;
+        }
         $client = $request->client;
-        
-        $loan->book()->associate($book);
-        $loan->client()->associate($client);
-        $loan->loaned_at = $currentdate;
 
-        $bookmod = Book::where('id', $book)->first();
+        $bookmod = Book::where('ISBN', $book)->first();
         $bookmod->copies = $bookmod->copies - 1;
         $bookmod->save();
+        
+        $loan->book()->associate($bookmod);
+        $loan->client()->associate($client);
+        $loan->loaned_at = $currentdate;
         $loan->save();
 
-        return redirect()->route('loans')->with('hooray');
+        return redirect()->route('loans');
     }
 
     public function return($id) {
