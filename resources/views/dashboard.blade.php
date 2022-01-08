@@ -11,6 +11,7 @@
 <script>
 let dataC = <?php echo json_encode($cats); ?>;
 let dataA = <?php echo json_encode($items); ?>;
+let books_years = <?php echo json_encode($books_years); ?>;
 let data = JSON.parse(dataC);
 let labels = [];
 for(let i = 0; i < data.length; i++) {
@@ -65,10 +66,9 @@ const ctx2 = document.getElementById('myChart2').getContext('2d');
 const myChart2 = new Chart(ctx2, {
     type: 'line',
     data: {
-        labels: labels,
         datasets: [{
             label: '# of Votes',
-            data: dataA,
+            data: books_years,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

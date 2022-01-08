@@ -39,15 +39,15 @@ class BookController extends Controller
     }
 
     public function store(Request $request) {
-        
 
         $this->validate($request, [
             'title' => 'required|max:255',
-            'author' => 'required|max:255',
-            'editor' => 'required|max:255',
-            'ISBN' => 'required|max:255',
+            'author' => 'max:255',
+            'editor' => 'max:255',
+            'category' => 'required',
+            'ISBN' => 'required|unique:books,ISBN|max:255',
             'language' => 'required|max:255',
-            'year' => 'required|max:4',
+            'year' => 'max:4',
             'copies' => 'required',
             'image' => 'required|image',
         ]);
@@ -96,11 +96,12 @@ class BookController extends Controller
 
         $this->validate($request, [
             'title' => 'required|max:255',
-            'author' => 'required|max:255',
-            'editor' => 'required|max:255',
-            'ISBN' => 'required|max:255',
+            'author' => 'max:255',
+            'editor' => 'max:255',
+            'category' => 'required',
+            'ISBN' => 'required|unique:books,ISBN|max:255',
             'language' => 'required|max:255',
-            'year' => 'required|max:4',
+            'year' => 'max:4',
             'copies' => 'required|integer',
         ]);
 
@@ -152,6 +153,39 @@ class BookController extends Controller
                         ->get();
 
         return view('books.search', compact('books'));
+    }
+
+    public function booksearchtrash() {
+        $search_text = $_GET['search'];
+        $books = Book::where('title', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('author', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('editor', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('ISBN', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('year', 'LIKE', '%'.$search_text.'%')
+                        ->orWhere('language', 'LIKE', '%'.$search_text.'%')
+                        ->get();
+
+        return view('books.searchtrash', compact('books'));
+    }
+
+    public function restoreview() {
+        $books = Book::onlyTrashed()->get();
+
+        return view('books.restore', ['books'=>$books]);
+    }
+
+    public function restore($id) {
+        $book = Book::onlyTrashed()->find($id);
+        $book->restore();
+
+        return redirect()->route('books.restore');
+    }
+
+    public function delete($id) {
+        $book = Book::onlyTrashed()->find($id);
+        $book->forceDelete();
+
+        return redirect()->route('books.restore');
     }
 
 }

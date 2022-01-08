@@ -9,7 +9,7 @@
         @csrf
         <div class="mb-4">
           <input type="text" name="name" id="name" placeholder="Nom"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white
           @error('name') border-red-500 @enderror" value="{{ old('name') }}">
 
           @error('name')
@@ -21,7 +21,7 @@
 
         <div class="mb-4">
           <input type="text" name="username" id="username" placeholder="Pseudo"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white
           @error('username') border-red-500 @enderror" value="{{ old('username') }}">
 
           @error('username')
@@ -33,7 +33,7 @@
 
         <div class="mb-4">
           <input type="text" name="email" id="email" placeholder="Email"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white
           @error('email') border-red-500 @enderror" value="{{ old('email') }}">
           
           @error('email')
@@ -46,8 +46,8 @@
 
         <div class="mb-4">
           <input type="password" name="password" id="password" placeholder="Mot de passe"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
-          @error('password') border-red-500 @enderror" value="">
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white
+          @error('password') border-red-500 @enderror">
 
           @error('password')
             <div class="text-red-500 mt-2 text-sm">
@@ -58,7 +58,7 @@
         </div>
 
         <div class="div">
-          <button type="submit" class="bg-gray-800 text-white px-4 py-3 rounded
+          <button type="submit" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
          font-medium w-full">Ajouter</button>
         </div>
 

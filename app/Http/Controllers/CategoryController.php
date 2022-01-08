@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Book;
 
 class CategoryController extends Controller
 {
     public function list() {
         $cats = Category::paginate(4);
-        return view('categories.index', ['cats'=>$cats]);
+        $books = Book::all();
+        return view('categories.index', ['cats'=>$cats, 'books'=>$books]);
     }
 
     public function index() {
@@ -19,7 +21,7 @@ class CategoryController extends Controller
     public function store(Request $request) {
 
         $this->validate($request, [
-            'label' => 'required|max:255',
+            'label' => 'required|unique:categories,label|max:255',
         ]);
 
         $cat = new Category();
@@ -46,6 +48,11 @@ class CategoryController extends Controller
 
     public function edit(Request $request, $id) {
         $cat = Category::find($id);
+        
+        $this->validate($request, [
+            'label' => 'required|unique:categories,label|max:255',
+        ]);
+
         $cat->label = $request->label;
         $cat->save();
 

@@ -8,7 +8,7 @@
   </div>
 
   <table class="table-layout">
-    <tr class="bg-gray-200 dark:bg-black text-indigo-800 dark:text-green-500">
+    <tr class="bg-gray-300 dark:bg-gray-900 text-indigo-800 dark:text-green-500">
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Libellé</td>
       <td></td>
@@ -18,7 +18,6 @@
     <tr class="row">
       <td>{{$cat->id}}</td>
       <td>{{$cat->label}}</td>
-      
       <td>
         <form action="{{ route('cats.destroy', $cat->id) }}" method="post">
           @csrf

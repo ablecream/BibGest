@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Bib</title>
 </head>
-<body class="bg-gray-200 h-full font-mono dark:bg-black">
-  <nav class="z-10 bg-white dark:bg-gray-900 flex justify-between p-5 mb-6">
+<body class="bg-gray-300 min-h-screen font-mono dark:bg-gray-900">
+  <nav class="z-10 bg-white dark:bg-black flex justify-between p-4 mb-6">
     <a href="{{ route('home') }}" class="font-bold text-xl text-indigo-800 dark:text-green-500">BibTech</a>
     <ul class="flex items-center font-semibold text-indigo-800 dark:text-green-500">
       <li class="px-4">
@@ -18,7 +18,11 @@
       <li><a href="{{ route('home') }}" class="p-3">Home</a></li>
       <li><a href="{{ route('contact') }}" class="p-3">Contact</a></li>
       @auth
-      <li><a href="{{ route('user', auth()->user()) }}" class="p-3">{{ auth()->user()->username }}</a></li>
+      <li>
+        <a href="{{ route('user.update', auth()->user()) }}">
+          <img src="{{ auth()->user()->profileImage() }}" class="w-8 mx-2 rounded-xl" alt="profil">
+        </a>
+      </li>
       <li>
         <form action="{{ route('logout') }}" method="post" class="p-3 inline text-red-500">
           @csrf
@@ -35,7 +39,7 @@
   
   @auth 
   <div class="fixed top-0 left-0 h-screen w-24 flex flex-col
-  bg-white dark:bg-gray-900 shadow-lg">
+  bg-white dark:bg-black shadow-lg">
   <a href="{{ route('home') }}" class="font-bold text-xl text-indigo-800 dark:text-green-500 my-6 mx-auto">BibTech</a>
     <a href="{{ route('dashboard') }}" class="sidebar-icon group">
       <i class="fas fa-chart-line"></i><span class="sidebar-tooltip group-hover:opacity-100">Dashboard</span>

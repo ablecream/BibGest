@@ -27,12 +27,12 @@
 
         <div class="mb-4">
           <input type="password" name="password" id="password" placeholder="Mot de passe"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
-          @error('password') border-red-500 @enderror" value="">
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white
+          @error('password') border-red-500 @enderror">
         </div>
 
         <div class="div">
-          <button type="submit" class="bg-gray-800 text-white px-4 py-3 rounded
+          <button type="submit" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
          font-medium w-full">Modifier</button>
         </div>
       </form>

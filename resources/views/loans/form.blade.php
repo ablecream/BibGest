@@ -9,12 +9,12 @@
         @csrf
         <div class="mb-4">
           <input type="text" name="ISBN" id="ISBN" placeholder="ISBN"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white
           @error('ISBN') border-red-500 @enderror" value="{{ old('ISBN') }}" autofocus>
           
           @error('ISBN')
             <div class="text-red-500 mt-2 text-sm">
-              Vous devez remplir ce champ.
+              {{ $message }}
             </div>
           @enderror 
 
@@ -22,7 +22,7 @@
 
         <div class="mb-4">
           <select name="book" id="book" placeholder="Livre"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white
           @error('book') border-red-500 @enderror" value="{{ old('book') }}">
           <option selected disabled>Livre</option>
           @foreach($books as $book)
@@ -31,7 +31,7 @@
 
           @error('book')
             <div class="text-red-500 mt-2 text-sm">
-              Vous devez remplir ce champ.
+              {{ $message }}
             </div>
           @enderror
           </select> 
@@ -39,7 +39,7 @@
     
         <div class="mb-4">
           <select name="client" id="client" placeholder="Abonné"
-          class="bg-gray-100 border-2 w-full p-4 rounded-lg
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg dark:bg-gray-800 dark:text-white
           @error('client') border-red-500 @enderror" value="{{ old('client') }}">
           <option selected disabled>Abonné</option>
           @foreach($clients as $client)
@@ -48,14 +48,14 @@
 
           @error('client')
             <div class="text-red-500 mt-2 text-sm">
-              Vous devez remplir ce champ.
+              {{ $message }}
             </div>
           @enderror
           </select> 
         </div>
 
         <div class="div">
-          <button type="submit" onclick="return confirm('Confirmer')" class="bg-gray-800 text-white px-4 py-3 rounded
+          <button type="submit" onclick="return confirm('Confirmer')" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
          font-medium w-full">Ajouter</button>
         </div>
 

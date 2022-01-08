@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Loan extends Model
 {
     public function book() {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class)->withTrashed();
     }
 
     public function client() {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class)->withTrashed();
     }
 }

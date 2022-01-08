@@ -8,7 +8,7 @@
   </div>
 
   <table class="table-layout">
-    <tr class="bg-gray-200 dark:bg-black dark:text-green-500">
+    <tr class="bg-gray-300 dark:bg-gray-900 dark:text-green-500">
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Abonné</td>
       <td class="text-center p-2">Livre</td>

@@ -20,7 +20,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::get('/user/{username}', [ManagerController::class, 'profil'])->name('user');
+Route::get('/user/{id}', [ManagerController::class, 'profil'])->name('user.update');
+Route::post('/user/{id}', [ManagerController::class, 'update']);
 
 Route::get('cat/{label}', [BookController::class, 'listbyCat'])->name('bycats');
 
@@ -28,6 +29,10 @@ Route::get('book/{id}', [BookController::class, 'singlebook'])->name('book');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
+Route::get('/forgotpassword', [LoginController::class, 'forgotpassword'])->name('password.request');
+Route::post('/forgotpassword', [LoginController::class, 'sendemail']);
+Route::get('/reset/{token}', [LoginController::class, 'resetpasswordview'])->name('password.reset');
+Route::post('/reset/{token}', [LoginController::class, 'resetpassword'])->name('password.update');
 
 
 
@@ -45,7 +50,11 @@ Route::post('/books/add', [BookController::class, 'store']);
 Route::get('/books/edit/{id}', [BookController::class, 'editview'])->name('books.edit');
 Route::post('/books/edit/{id}', [BookController::class, 'edit']);
 Route::get('/books/search', [BookController::class, 'booksearch'])->name('booksearch');
+Route::get('/books/search/trash', [BookController::class, 'booksearchtrash'])->name('booksearchtrash');
 Route::get('/search', [BookController::class, 'search'])->name('homesearch');
+Route::get('/books/restore', [BookController::class, 'restoreview'])->name('books.restore');
+Route::post('/books/restore/{id}', [BookController::class, 'restore'])->name('book.restore');
+Route::delete('/books/restore/{id}', [BookController::class, 'delete'])->name('book.delete');
 
 Route::get('/categories', [CategoryController::class, 'list'])->name('cats');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('cats.destroy');
@@ -61,6 +70,10 @@ Route::post('/clients/add', [ClientController::class, 'store']);
 Route::get('/clients/edit/{id}', [ClientController::class, 'editview'])->name('clients.edit');
 Route::post('/clients/edit/{id}', [ClientController::class, 'edit']);
 Route::get('clients/search', [ClientController::class, 'clientsearch'])->name('clientsearch');
+Route::get('clients/search/trash', [ClientController::class, 'clientsearchtrash'])->name('clientsearchtrash');
+Route::get('/clients/restore', [ClientController::class, 'restoreview'])->name('clients.restore');
+Route::post('/clients/restore/{id}', [ClientController::class, 'restore'])->name('client.restore');
+Route::delete('/clients/restore/{id}', [ClientController::class, 'delete'])->name('client.delete');
 
 
 Route::get('/tags', [TagController::class, 'list'])->name('tags');

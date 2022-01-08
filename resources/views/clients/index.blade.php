@@ -11,10 +11,14 @@
   <div class="ml-48 mt-16">
     <a href="{{ route('addclient') }}" class="bg-gray-800 text-white px-4 py-3 rounded
                                              font-medium w-24">Ajouter</a>
+    @if(auth()->user()->admin)
+    <a href="{{ route('clients.restore') }}" class="bg-red-600 text-white px-4 py-3 rounded
+                                             font-medium w-24">Restaurer</a>
+    @endif
   </div>
 
   <table class="table-layout">
-    <tr class="bg-gray-200 dark:bg-black text-indigo-800 dark:text-green-500">
+    <tr class="bg-gray-300 dark:bg-gray-900 text-indigo-800 dark:text-green-500">
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Nom</td>
       <td class="text-center p-2">Prénom</td>

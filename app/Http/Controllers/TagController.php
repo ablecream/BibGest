@@ -19,7 +19,7 @@ class TagController extends Controller
     public function store(Request $request) {
 
         $this->validate($request, [
-            'label' => 'required|max:255',
+            'label' => 'required|unique:tags,label|max:255',
         ]);
 
         $tag = new Tag();
@@ -40,6 +40,10 @@ class TagController extends Controller
 
     public function editview($id) {
         $tag = Tag::find($id);
+
+        $this->validate($request, [
+            'label' => 'required|unique:tags,label|max:255',
+        ]);
 
         return view('tags.editform')->with('tag', $tag);
     }

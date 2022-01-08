@@ -24,8 +24,8 @@ class LoanController extends Controller
     public function store(Request $request) {
 
         $this->validate($request, [
-            'ISBN' => 'required_if:book,null',
-            'book' => 'required_if:ISBN,null',
+            'ISBN' => 'exclude_unless:book,null|exists:books,ISBN',
+            'book' => 'exclude_unless:ISBN,null',
             'client' => 'required',
         ]);
 

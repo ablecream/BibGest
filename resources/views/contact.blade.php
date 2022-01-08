@@ -22,21 +22,21 @@
     <div class="m-4 font-bold text-center text-indigo-800 dark:text-green-500">Ecrivez-nous</div>
     <div class="mb-4">
         <input type="text" name="Nom" id="Nom" placeholder="Nom"
-        class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg" required>
+        class="bg-gray-100 dark:bg-gray-800 dark:text-white border-2 w-full px-8 py-4 rounded-lg" required>
 
       </div>
       <div class="mb-4">
         <input type="email" name="email" id="Email" placeholder="Email"
-        class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg" required>
+        class="bg-gray-100 dark:bg-gray-800 dark:text-white border-2 w-full px-8 py-4 rounded-lg" required>
       </div>
       <div class="mb-4">
           <textarea name="Message" id="Message" placeholder="Message"
-          class="bg-gray-100 border-2 w-full px-8 py-4 rounded-lg" required>
+          class="bg-gray-100 dark:bg-gray-800 dark:text-white border-2 w-full px-8 py-4 rounded-lg" required>
           </textarea>
         </div>
 
         <div class="div">
-          <button type="submit" class="bg-gray-800 text-white px-4 py-3 rounded
+          <button type="submit" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
          font-medium w-full">Envoyer</button>
         </div>
   </form>

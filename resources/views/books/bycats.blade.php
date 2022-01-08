@@ -6,15 +6,15 @@
   <nav class="flex flex-wrap text-sm font-bold">
     @foreach($cats as $cat)
     <li class="block px-3 py-2 m-2 rounded-md bg-white hover:bg-indigo-300 
-              dark:bg-gray-900 dark:text-white dark:hover:bg-green-500 transition-all">
+              dark:bg-black dark:text-white dark:hover:bg-green-500 transition-all">
       <a href="{{ route('bycats', $cat->id) }}">{{ $cat->label }}</a>
     </li>
     @endforeach
   </nav>
 </div>
 <form class="flex justify-start mx-9 my-4 items-center text-gray-700 @auth ml-32 @endauth" type="get" action="{{ route('homesearch') }}">
-    <input type="text" class="border-2 border-gray-300 bg-white
-     h-10 px-5 sm:pr-72 rounded-lg text-sm focus:outline-none" name="search" placeholder="Rechercher un livre">
+    <input type="text" class="border-2 border-gray-300 bg-white dark:bg-gray-800
+     h-10 px-5 sm:pr-72 dark:text-white rounded-lg text-sm focus:outline-none" name="search" placeholder="Rechercher un livre">
      <button type="submit" class="flex items-center justify-center px-4"><i class="fas fa-search"></i></button>
 </form>
 

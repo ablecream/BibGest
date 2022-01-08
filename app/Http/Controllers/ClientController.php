@@ -75,4 +75,33 @@ class ClientController extends Controller
 
         return view('clients.search', compact('clients'));
     }
+
+    public function clientsearchtrash() {
+        $search_text = $_GET['search'];
+        $clients = Client::onlyTrashed()->where('firstname', 'LIKE', '%'.$search_text.'%')
+                            ->orWhere('lastname', 'LIKE', '%'.$search_text.'%')
+                            ->get();
+
+        return view('clients.searchtrash', compact('clients'));
+    }
+
+    public function restoreview() {
+        $clients = Client::onlyTrashed()->get();
+
+        return view('clients.restore', ['clients'=>$clients]);
+    }
+
+    public function restore($id) {
+        $client = Client::onlyTrashed()->find($id);
+        $client->restore();
+
+        return redirect()->route('clients.restore');
+    }
+
+    public function delete($id) {
+        $client = Client::onlyTrashed()->find($id);
+        $client->forceDelete();
+
+        return redirect()->route('clients.restore');
+    }
 }
