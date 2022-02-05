@@ -35,7 +35,8 @@
     </tr>
     @endforeach
   </table>
-  <div class="mx-52 my-6">
+  
+  <div class="flex justify-center ml-32 my-6">
     {{ $managers->links() }}
   </div>
 

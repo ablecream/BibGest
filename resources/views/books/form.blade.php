@@ -117,8 +117,10 @@
 
         <div class="mb-4 flex flex-wrap">
           @foreach($tags as $tag)
-          <label class="m-4 dark:text-white" for="tags">{{ $tag->label }}</label>
-          <input class="mr-4" type="checkbox" id="tags" name="tags[]" value="{{ $tag->id }}">
+          <div>
+            <label class="m-4 dark:text-white" for="tags">{{ $tag->label }}</label>
+            <input class="mr-4" type="checkbox" id="tags" name="tags[]" value="{{ $tag->id }}">
+          </div>
           @endforeach
         </div>
         

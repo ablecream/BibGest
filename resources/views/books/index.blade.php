@@ -18,7 +18,7 @@
   </div>
   
 
-  <table class="table-layout">
+  <table class="table-layout overflow-x-auto">
     <tr class="bg-gray-300 dark:bg-gray-900 text-indigo-800 dark:text-green-500">
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Titre</td>
@@ -32,8 +32,8 @@
     </tr>
     @foreach($books as $book)
     <tr class="row">
-      <td><a href="{{ route('book', $book->id) }}">{{$book->id}}</a></td>
-      <td>{{$book->title}}</td>
+      <td>{{$book->id}}</td>
+      <td><a href="{{ route('book', $book->id) }}">{{$book->title}}</a></td>
       <td>{{$book->author}}</td>
       <td>{{$book->category['label']}}</td>
       <td>{{$book->editor}}</td>
@@ -53,5 +53,9 @@
     </tr>
     @endforeach
   </table>
+
+  <div class="flex justify-center ml-32 my-6">
+    {{ $books->links() }}
+  </div>
 
 @endsection

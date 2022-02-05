@@ -4,7 +4,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js" integrity="sha512-tMabqarPtykgDtdtSqCL3uLVM0gS1ZkUAVhRFu1vSEFgvB73niFQWJuvviDyBGBH22Lcau4rHB5p2K2T0Xvr6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <div class="flex flex-wrap mx-16">
-    <canvas class="my-16 mx-12" id="myChart"></canvas>
+    <canvas class="mb-16 mx-12" id="myChart"></canvas>
     <canvas class="my-16 mx-32" id="myChart2"></canvas>
     <canvas class="my-16 mx-32" id="myChart3"></canvas>
 </div>
@@ -12,6 +12,8 @@
 let dataC = <?php echo json_encode($cats); ?>;
 let dataA = <?php echo json_encode($items); ?>;
 let books_years = <?php echo json_encode($books_years); ?>;
+let loans = <?php echo json_encode($loans); ?>;
+let returns = <?php echo json_encode($returns); ?>;
 let data = JSON.parse(dataC);
 let labels = [];
 for(let i = 0; i < data.length; i++) {
@@ -27,12 +29,12 @@ const myChart = new Chart(ctx, {
             label: '# of Votes',
             data: dataA,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+                'rgba(255, 159, 64, 0.8)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -49,10 +51,13 @@ const myChart = new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Livres par catégorie'
+                text: 'Livres par catégorie',
+                font: {
+                    size: 32
+                }
             }
         },
-        aspectRatio: 4,
+        aspectRatio: 2,
         scales: {
             y: {
                 beginAtZero: true,
@@ -67,7 +72,7 @@ const myChart2 = new Chart(ctx2, {
     type: 'line',
     data: {
         datasets: [{
-            label: '# of Votes',
+            label: 'Nombre de livres',
             data: books_years,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -92,13 +97,19 @@ const myChart2 = new Chart(ctx2, {
         plugins: {
             title: {
                 display: true,
-                text: 'Nombre de livres'
+                text: 'Nombre de livres',
+                font: {
+                    size: 32
+                }
             }
         },
         aspectRatio: 4,
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                min: 0,
+                max: 10,
+                display: true
             }
         }
     }
@@ -108,20 +119,20 @@ const ctx3 = document.getElementById('myChart3').getContext('2d');
 const myChart3 = new Chart(ctx3, {
     type: 'bar',
     data: {
-        labels: labels,
         datasets: [{
             type: 'bar',
-            label: '# of Votes',
-            data: dataA,
+            label: 'Emprunts',
+            data: loans,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.5)'
+                'rgba(255, 99, 132, 0.8)'
             ],
         },
         {
             type: 'bar',
-            data: dataA,
+            label: 'Retours',
+            data: returns,
             backgroundColor: [
-                'rgba(16, 0, 225, 0.5)'
+                'rgba(16, 0, 225, 0.8)'
             ],
         },
         ]
@@ -130,13 +141,17 @@ const myChart3 = new Chart(ctx3, {
         plugins: {
             title: {
                 display: true,
-                text: 'Nombre de livres'
+                text: 'Emprunts/Retours',
+                font: {
+                    size: 32
+                }
             }
         },
-        aspectRatio: 4,
+        aspectRatio: 2,
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                max: 10
             }
         }
     }

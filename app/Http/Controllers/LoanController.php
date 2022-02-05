@@ -11,7 +11,7 @@ use Carbon\Carbon;
 class LoanController extends Controller
 {
     public function list() {
-        $loans = Loan::all();
+        $loans = Loan::paginate(5);
         return view('loans.index', ['loans'=>$loans]);
     }
 

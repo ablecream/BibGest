@@ -59,7 +59,7 @@ class ManagerController extends Controller
     }
 
     public function list() {
-        $managers = User::where('admin', 0)->paginate(4);
+        $managers = User::where('admin', 0)->paginate(5);
         
         return view('managers.index')->with('managers', $managers);
     }

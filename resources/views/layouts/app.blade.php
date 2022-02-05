@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Bib</title>
+  <title>RABib</title>
 </head>
 <body class="bg-gray-300 min-h-screen font-mono dark:bg-gray-900">
-  <nav class="z-10 bg-white dark:bg-black flex justify-between p-4 mb-6">
+  <nav class="z-10 bg-white dark:bg-black flex justify-between p-4 mb-6 shadow-xl">
     <a href="{{ route('home') }}" class="font-bold text-xl text-indigo-800 dark:text-green-500">BibTech</a>
     <ul class="flex items-center font-semibold text-indigo-800 dark:text-green-500">
       <li class="px-4">
@@ -40,7 +40,9 @@
   @auth 
   <div class="fixed top-0 left-0 h-screen w-24 flex flex-col
   bg-white dark:bg-black shadow-lg">
-  <a href="{{ route('home') }}" class="font-bold text-xl text-indigo-800 dark:text-green-500 my-6 mx-auto">BibTech</a>
+  <a href="{{ route('home') }}" class="font-bold text-xl text-indigo-800 dark:text-green-500 my-6 mx-auto">
+    BibTech
+  </a>
     <a href="{{ route('dashboard') }}" class="sidebar-icon group">
       <i class="fas fa-chart-line"></i><span class="sidebar-tooltip group-hover:opacity-100">Dashboard</span>
     </a>
@@ -67,8 +69,9 @@
 
   </div>
   @endauth
-  
+
   @yield('content')
+  
   <script>
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         localStorage.setItem('theme', 'dark')

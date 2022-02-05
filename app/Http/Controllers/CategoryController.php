@@ -9,7 +9,7 @@ use App\Models\Book;
 class CategoryController extends Controller
 {
     public function list() {
-        $cats = Category::paginate(4);
+        $cats = Category::paginate(5);
         $books = Book::all();
         return view('categories.index', ['cats'=>$cats, 'books'=>$books]);
     }
@@ -34,6 +34,8 @@ class CategoryController extends Controller
 
     public function destroy($id) {
         $cat = Category::find($id);
+        $res = Category::with('book')->get();
+        dd($res);
 
         $cat->delete();
 

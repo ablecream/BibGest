@@ -8,7 +8,7 @@ use App\Models\Client;
 class ClientController extends Controller
 {
     public function list() {
-    $clients = Client::all();
+    $clients = Client::paginate(5);
 
     return view('clients.index', ['clients'=>$clients]);
     }
@@ -56,7 +56,7 @@ class ClientController extends Controller
         $this->validate($request, [
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            'birth' => 'required|birth',
+            'birth' => 'required|date',
         ]);
 
         $client->firstname = $request->firstname;

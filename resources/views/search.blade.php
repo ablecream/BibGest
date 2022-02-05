@@ -1,8 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+<form class="flex justify-start mx-9 my-4 items-center text-gray-700 @auth ml-32 @endauth" type="get" action="{{ route('homesearch') }}">
+    <input type="text" class="border-2 border-gray-300 bg-white dark:bg-gray-800
+     h-10 px-5 sm:pr-72 dark:text-white rounded-lg text-sm focus:outline-none" name="search" placeholder="Rechercher un livre">
+     <button type="submit" class="flex items-center justify-center px-4"><i class="fas fa-search"></i></button>
+</form>
 
-<div class="flex justify-between mx-8 @auth ml-32 @endauth">
+<div class="text-center @auth ml-24 @endauth">
+  <button class="lg:hidden text-indigo-800 dark:text-green-500" id="menu-button">
+    <i class="fas fa-ellipsis-h fa-3x"></i>
+  </button>
+</div>
+
+<div class="hidden lg:flex mx-8 @auth ml-32 @endauth" id="menu">
   <nav class="flex flex-wrap text-sm font-bold">
     @foreach($cats as $cat)
     <li class="block px-3 py-2 m-2 rounded-md bg-white hover:bg-indigo-300 
@@ -12,13 +23,13 @@
     @endforeach
   </nav>
 </div>
-<form class="flex justify-start mx-9 my-4 items-center text-gray-700 @auth ml-32 @endauth" type="get" action="{{ route('homesearch') }}">
-    <input type="text" class="border-2 border-gray-300 bg-white dark:bg-gray-800
-     h-10 px-5 sm:pr-72 dark:text-white rounded-lg text-sm focus:outline-none" name="search" placeholder="Rechercher un livre">
-     <button type="submit" class="flex items-center justify-center px-4"><i class="fas fa-search"></i></button>
-</form>
 
 <div class="flex flex-wrap gap-6 mx-6 my-12 @auth ml-32 @endauth"> 
+  @if($err = 1)
+  <div class="text-center text-xl mx-auto">
+    Aucun résultat trouvé
+  </div>
+  @else
   @foreach($books as $book)
     <a href="{{ route('book', $book->id) }}" class="h-screen sm:h-96 lg:h-80 w-full sm:w-1/3 lg:w-1/6 flex items-end rounded-2xl transition-all bg-cover bg-center"
                                                     style="background-image: url('storage/{{ $book->image }}')" >
@@ -27,6 +38,21 @@
       </div>
     </a>
   @endforeach
+  @endif
 </div>
+
+  <div class="flex justify-center @auth ml-32 @endauth my-6">
+    {{ $books->links() }}
+  </div>
+
+
+<script>
+  const button = document.querySelector('#menu-button'); // Hamburger Icon
+  const menu = document.querySelector('#menu'); // Menu
+
+  button.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
 
 @endsection

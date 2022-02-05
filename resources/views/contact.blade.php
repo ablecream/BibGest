@@ -37,7 +37,7 @@
 
         <div class="div">
           <button type="submit" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
-         font-medium w-full">Envoyer</button>
+         font-medium w-full" onclick="return confirm('Voulez-vous envoyer ce message?')">Envoyer</button>
         </div>
   </form>
 </div>

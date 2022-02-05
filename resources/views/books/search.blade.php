@@ -14,7 +14,7 @@
   </div>
 
   <table class="table-layout">
-    <tr class="bg-gray-200 dark:bg-black text-indigo-800 dark:text-green-500">
+    <tr class="bg-white dark:bg-black text-indigo-800 dark:text-green-500">
       <td class="text-center p-2">#</td>
       <td class="text-center p-2">Titre</td>
       <td class="text-center p-2">Auteur</td>

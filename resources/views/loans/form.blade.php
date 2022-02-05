@@ -55,7 +55,7 @@
         </div>
 
         <div class="div">
-          <button type="submit" onclick="return confirm('Confirmer')" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
+          <button type="submit" onclick="return confirm('Confirmer l\'emprunt')" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
          font-medium w-full">Ajouter</button>
         </div>
 

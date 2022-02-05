@@ -116,8 +116,10 @@
 
         <div class="mb-4 flex flex-wrap">
           @foreach($tags as $tag)
-          <label class="m-4 dark:text-white" for="tags">{{ $tag->label }}</label>
-          <input class="mr-4" type="checkbox" id="tags" name="tags[]" value="{{ $tag->id }}">
+          <div>
+            <label class="m-4 dark:text-white" for="tags">{{ $tag->label }}</label>
+            <input class="mr-4" type="checkbox" id="tags" name="tags[]" value="{{ $tag->id }}">
+          </div>
           @endforeach
         </div>
         
@@ -143,7 +145,7 @@
 
         <div class="div">
           <button type="submit" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
-         font-medium w-full">Ajouter</button>
+         font-medium w-full">Modifier</button>
         </div>
 
       </form>

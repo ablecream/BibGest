@@ -7,22 +7,23 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\Tag;
 use Intervention\Image\Facades\Image;
+use Illuminate\Database\Eloquent\Builder;
 
 class BookController extends Controller
 {
     public function list() {
-        $books = Book::all();
+        $books = Book::paginate(5);
         return view('books.index', ['books'=>$books]);
     }
 
     public function listguest() {
-        $books = Book::all();
+        $books = Book::paginate(10);
         $cats = Category::all();
         return view('home', ['books'=>$books], ['cats'=>$cats]);
     }
 
     public function listbyCat($id) {
-        $books = Book::where('category_id', $id)->get();
+        $books = Book::where('category_id', $id)->paginate(10);
         $cats = Category::all();
         return view('books.bycats', ['books'=>$books], ['cats'=>$cats]);
     }
@@ -99,7 +100,7 @@ class BookController extends Controller
             'author' => 'max:255',
             'editor' => 'max:255',
             'category' => 'required',
-            'ISBN' => 'required|unique:books,ISBN|max:255',
+            'ISBN' => 'required|max:255',
             'language' => 'required|max:255',
             'year' => 'max:4',
             'copies' => 'required|integer',
@@ -131,15 +132,28 @@ class BookController extends Controller
     public function search() {
         $cats = Category::all();
         $search_text = $_GET['search'];
+        $err = 0;
+
         $books = Book::where('title', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('author', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('editor', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('ISBN', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('year', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('language', 'LIKE', '%'.$search_text.'%')
-                        ->get();
+                        ->orWhereHas('tags', function(Builder $query) {   
+                            $search_text = $_GET['search'];
+                            $query->where('label', 'LIKE', '%'.$search_text.'%');
+                        })
+                        ->paginate(10);
 
-        return view('search', compact('books'), ['cats'=>$cats]);
+                        
+        
+        if(empty($books->first())) {
+            $err = 1;
+            return view('search', compact('books'), ['cats'=>$cats, 'err'=>$err]);
+        }
+
+        return view('search', compact('books'), ['cats'=>$cats, 'err'=>$err]);
     }
 
     public function booksearch() {
@@ -150,6 +164,10 @@ class BookController extends Controller
                         ->orWhere('ISBN', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('year', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('language', 'LIKE', '%'.$search_text.'%')
+                        ->orWhereHas('tags', function(Builder $query) {   
+                            $search_text = $_GET['search'];
+                            $query->where('label', 'LIKE', '%'.$search_text.'%');
+                        })
                         ->get();
 
         return view('books.search', compact('books'));
@@ -163,6 +181,10 @@ class BookController extends Controller
                         ->orWhere('ISBN', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('year', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('language', 'LIKE', '%'.$search_text.'%')
+                        ->orWhereHas('tags', function(Builder $query) {   
+                            $search_text = $_GET['search'];
+                            $query->where('label', 'LIKE', '%'.$search_text.'%');
+                        })
                         ->get();
 
         return view('books.searchtrash', compact('books'));

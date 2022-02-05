@@ -32,7 +32,9 @@
       </td>
       @else
       <td>
-        <a href="{{ route('returnloan', $loan->id) }}" class="text-white bg-red-500 rounded font-medium py-2 px-4">
+        <a href="{{ route('returnloan', $loan->id) }}"
+        onclick="return confirm('Confirmer le retour')"
+        class="text-white bg-red-500 rounded font-medium py-2 px-4">
           Retourné
         </a>
       </td>
@@ -40,5 +42,9 @@
     </tr>
     @endforeach
   </table>
+
+  <div class="flex justify-center ml-32 my-6">
+    {{ $loans->links() }}
+  </div>
 
 @endsection
