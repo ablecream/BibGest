@@ -34,8 +34,6 @@ class CategoryController extends Controller
 
     public function destroy($id) {
         $cat = Category::find($id);
-        $res = Category::with('book')->get();
-        dd($res);
 
         $cat->delete();
 

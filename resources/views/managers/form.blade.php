@@ -57,6 +57,11 @@
           
         </div>
 
+        <div class="mb-4 dark:text-white">
+          <label for="admin">Admin</label>
+          <input type="checkbox" name="admin" id="admin" value=1>
+        </div>
+
         <div class="div">
           <button type="submit" class="bg-indigo-900 dark:bg-green-700 text-white px-4 py-3 rounded
          font-medium w-full">Ajouter</button>

@@ -26,7 +26,7 @@
       <td>
         <form action="{{ route('client.restore', $client->id) }}" method="post">
           @csrf
-          <button type="submit" onclick="return confirm('Are you sure?')" class="text-white bgindigo-800 dark:bg-green-500 rounded font-medium p-2"><i class="fa fa-trash-restore"></i></button>
+          <button type="submit" onclick="return confirm('Are you sure?')" class="text-white bg-indigo-800 dark:bg-green-500 rounded font-medium p-2"><i class="fa fa-trash-restore"></i></button>
         </form>
       </td>
       <td>

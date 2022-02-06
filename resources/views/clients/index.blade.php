@@ -29,7 +29,7 @@
     @foreach($clients as $client)
     <tr class="row">
       <td>{{$client->id}}</td>
-      <td>{{$client->lastname}}</td>
+      <td><a href="{{ route('client', $client->id) }}">{{$client->lastname}}</a></td>
       <td>{{$client->firstname}}</td>
       <td>{{$client->birth}}</td>
       <td>

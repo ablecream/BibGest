@@ -17,7 +17,7 @@
     @foreach($cats as $cat)
     <tr class="row">
       <td>{{$cat->id}}</td>
-      <td>{{$cat->label}}</td>
+      <td><a href="{{ route('bycats', $cat->id) }}">{{$cat->label}}</a></td>
       <td>
         <form action="{{ route('cats.destroy', $cat->id) }}" method="post">
           @csrf

@@ -25,11 +25,6 @@
 </div>
 
 <div class="flex flex-wrap gap-6 mx-6 my-12 @auth ml-32 @endauth"> 
-  @if($err = 1)
-  <div class="text-center text-xl mx-auto">
-    Aucun résultat trouvé
-  </div>
-  @else
   @foreach($books as $book)
     <a href="{{ route('book', $book->id) }}" class="h-screen sm:h-96 lg:h-80 w-full sm:w-1/3 lg:w-1/6 flex items-end rounded-2xl transition-all bg-cover bg-center"
                                                     style="background-image: url('storage/{{ $book->image }}')" >
@@ -38,7 +33,6 @@
       </div>
     </a>
   @endforeach
-  @endif
 </div>
 
   <div class="flex justify-center @auth ml-32 @endauth my-6">

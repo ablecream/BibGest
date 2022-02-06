@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Loan;
 
 class ClientController extends Controller
 {
@@ -15,6 +16,12 @@ class ClientController extends Controller
 
     public function index() {
         return view('clients.form');
+    }
+
+    public function singleclient($id) {
+        $client = Client::find($id);
+        $loans = Loan::where('client_id', $id)->get();
+        return view('clients.singleclient', ['client'=>$client, 'loans'=>$loans]);
     }
 
     public function store(Request $request) {

@@ -44,7 +44,7 @@
         <form action="{{ route('books.destroy', $book->id) }}" method="post">
           @csrf
           @method('DELETE')
-          <button type="submit" onclick="return confirm('Are you sure?')" class="text-white bg-red-700 rounded font-medium p-2"><i class="fa fa-trash-alt"></i></button>
+          <button type="submit" onclick="return confirm('Confirmer?')" class="text-white bg-red-700 rounded font-medium p-2"><i class="fa fa-trash-alt"></i></button>
         </form>
       </td>
       <td>

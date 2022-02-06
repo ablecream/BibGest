@@ -27,6 +27,8 @@ Route::get('cat/{label}', [BookController::class, 'listbyCat'])->name('bycats');
 
 Route::get('book/{id}', [BookController::class, 'singlebook'])->name('book');
 
+Route::get('client/{id}', [ClientController::class, 'singleclient'])->name('client');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::get('/forgotpassword', [LoginController::class, 'forgotpassword'])->name('password.request');

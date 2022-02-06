@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Loan;
 use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -30,7 +31,8 @@ class BookController extends Controller
 
     public function singlebook($id) {
         $book = Book::find($id);
-        return view('books.book', ['book'=>$book]);
+        $loans = Loan::where('book_id', $id)->get();
+        return view('books.book', ['book'=>$book, 'loans'=>$loans]);
     }
 
     public function index() {
@@ -132,8 +134,6 @@ class BookController extends Controller
     public function search() {
         $cats = Category::all();
         $search_text = $_GET['search'];
-        $err = 0;
-
         $books = Book::where('title', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('author', 'LIKE', '%'.$search_text.'%')
                         ->orWhere('editor', 'LIKE', '%'.$search_text.'%')
@@ -146,14 +146,8 @@ class BookController extends Controller
                         })
                         ->paginate(10);
 
-                        
-        
-        if(empty($books->first())) {
-            $err = 1;
-            return view('search', compact('books'), ['cats'=>$cats, 'err'=>$err]);
-        }
-
-        return view('search', compact('books'), ['cats'=>$cats, 'err'=>$err]);
+              
+        return view('search', compact('books'), ['cats'=>$cats]);
     }
 
     public function booksearch() {
